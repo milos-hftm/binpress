@@ -173,18 +173,67 @@
         <li class="step"><span class="step__no">04</span><h3>Auswurf &amp; Rückfahrt</h3><p>Am Ende des Presswegs fällt der verdichtete Abfall durch einen schmalen Schlitz in den Sack. Danach fährt die Pressplatte zurück in die Ausgangsposition.</p></li>
       </ol>
 
-      <figure class="assembly">
-        <a class="assembly__frame" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">
-          <img src="assets/zusammenstellung.jpg" alt="Zusammenstellungszeichnung BinPress mit Explosionsdarstellung und Stückliste, 26 Positionen" loading="lazy">
-        </a>
-        <figcaption>
+      <div class="explorer" id="aufbau">
+        <div class="explorer__head">
           <div>
-            <b>Zusammenstellungszeichnung 10013869</b>
-            <span>Explosionsdarstellung mit 26 Positionen — Grundplatte, Mantel, Presseinsatz, Sackhalter, Linearmotor, Metallsensor und Scharniere. Erstellt von Jean Barraz, 03.07.2026, Massstab 1:5.</span>
+            <h3 class="explorer__title">26 Teile, aus der Zeichnung erklärt.</h3>
+            <p class="explorer__sub">Position im Bild anklicken oder in der Stückliste wählen — beides hebt dasselbe Teil hervor. Daten aus der Zusammenstellungszeichnung 10013869 (Jean Barraz, 03.07.2026, Massstab 1:5).</p>
           </div>
-          <a class="assembly__zoom" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
-        </figcaption>
-      </figure>
+          <a class="explorer__original" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">Originalzeichnung ↗</a>
+        </div>
+
+        <div class="explorer__filters" role="group" aria-label="Nach Baugruppe filtern">
+          <button type="button" class="chip is-active" data-group="all">Alle <span>26</span></button>
+          <button type="button" class="chip" data-group="basis">Grundgestell <span>3</span></button>
+          <button type="button" class="chip" data-group="press">Pressmechanik <span>5</span></button>
+          <button type="button" class="chip" data-group="antrieb">Antrieb &amp; Lager <span>5</span></button>
+          <button type="button" class="chip" data-group="deckel">Deckel &amp; Verriegelung <span>12</span></button>
+          <button type="button" class="chip" data-group="sensor">Sensorik <span>1</span></button>
+        </div>
+
+        <div class="explorer__grid">
+          <figure class="explorer__stage" id="explorerStage">
+            <img src="assets/explosion.jpg" alt="Explosionsdarstellung des BinPress mit nummerierten Positionen" loading="lazy">
+            <div class="explorer__spots" id="explorerSpots"></div>
+          </figure>
+
+          <div class="explorer__panel">
+            <div class="explorer__readout" id="explorerReadout" aria-live="polite">
+              <p class="explorer__hint">Position wählen, um Teilenummer, Benennung und Menge zu sehen.</p>
+            </div>
+
+            <ol class="bom" id="bomList">
+              <li><button type="button" class="bom__row" data-pos="26" data-group="basis" data-x="8.49" data-y="90.37"><span class="bom__no">26</span><span class="bom__name">Grundplatte</span><span class="bom__pn">10013866</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="25" data-group="basis" data-x="7.21" data-y="85.06"><span class="bom__no">25</span><span class="bom__name">Mantel</span><span class="bom__pn">10013867</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="24" data-group="basis" data-x="10.35" data-y="63.95"><span class="bom__no">24</span><span class="bom__name">Sackhalter</span><span class="bom__pn">10013870</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="22" data-group="press" data-x="18.26" data-y="26.30"><span class="bom__no">22</span><span class="bom__name">Presseinsatz</span><span class="bom__pn">10013876</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="21" data-group="press" data-x="32.33" data-y="26.79"><span class="bom__no">21</span><span class="bom__name">Presseinsatz Bewegend</span><span class="bom__pn">10013880</span><span class="bom__qty">4×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="20" data-group="press" data-x="54.88" data-y="29.88"><span class="bom__no">20</span><span class="bom__name">Presseinsatz Antrieb</span><span class="bom__pn">10013882</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="19" data-group="press" data-x="56.63" data-y="23.33"><span class="bom__no">19</span><span class="bom__name">Schneidplatte</span><span class="bom__pn">10013881</span><span class="bom__qty">3×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="2" data-group="press" data-x="87.79" data-y="43.09"><span class="bom__no">2</span><span class="bom__name">Fixerpressteil</span><span class="bom__pn">10013875</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="15" data-group="antrieb" data-x="89.77" data-y="29.14"><span class="bom__no">15</span><span class="bom__name">Linear Motor</span><span class="bom__pn">10013892</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="18" data-group="antrieb"><span class="bom__no">18</span><span class="bom__name">Lager BGHWFB-C6003ZZ-30-25</span><span class="bom__pn">90003690</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="17" data-group="antrieb"><span class="bom__no">17</span><span class="bom__name">Lager BGFCBB6804ZZ-35</span><span class="bom__pn">90003700</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="16" data-group="antrieb"><span class="bom__no">16</span><span class="bom__name">Lager BGHFB-C6804ZZ-25</span><span class="bom__pn">90003695</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="14" data-group="antrieb"><span class="bom__no">14</span><span class="bom__name">27860-01-558550</span><span class="bom__pn">90003723</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="1" data-group="deckel" data-x="25.70" data-y="4.44"><span class="bom__no">1</span><span class="bom__name">Deckel</span><span class="bom__pn">10013896</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="23" data-group="deckel" data-x="88.49" data-y="50.25"><span class="bom__no">23</span><span class="bom__name">Mittlerer Deckel</span><span class="bom__pn">10013874</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="4" data-group="deckel" data-x="18.84" data-y="10.49"><span class="bom__no">4</span><span class="bom__name">Sash fastener DIN 7463 A1-8</span><span class="bom__pn">90003753</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="5" data-group="deckel" data-x="49.77" data-y="4.57"><span class="bom__no">5</span><span class="bom__name">90003754</span><span class="bom__pn">90003754</span><span class="bom__qty">1×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="9" data-group="deckel" data-x="35.47" data-y="8.52"><span class="bom__no">9</span><span class="bom__name">90003744</span><span class="bom__pn">90003744</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="10" data-group="deckel" data-x="61.16" data-y="11.98"><span class="bom__no">10</span><span class="bom__name">90003746</span><span class="bom__pn">90003746</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="11" data-group="deckel" data-x="61.86" data-y="15.31"><span class="bom__no">11</span><span class="bom__name">90003745</span><span class="bom__pn">90003745</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="6" data-group="deckel" data-x="63.72" data-y="64.81"><span class="bom__no">6</span><span class="bom__name">Hinge DIN 7954 A 100-1</span><span class="bom__pn">90003748</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="7" data-group="deckel" data-x="72.33" data-y="57.53"><span class="bom__no">7</span><span class="bom__name">Hinge DIN 7954 A100-3</span><span class="bom__pn">90003749</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="8" data-group="deckel" data-x="66.40" data-y="60.49"><span class="bom__no">8</span><span class="bom__name">Hinge DIN 7954 A100-2</span><span class="bom__pn">90003750</span><span class="bom__qty">2×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="12" data-group="deckel"><span class="bom__no">12</span><span class="bom__name">Hinge DIN 7954 A 60</span><span class="bom__pn">90003731</span><span class="bom__qty">7×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="13" data-group="deckel"><span class="bom__no">13</span><span class="bom__name">Hinge DIN 7954 C 60</span><span class="bom__pn">90003727</span><span class="bom__qty">6×</span></button></li>
+              <li><button type="button" class="bom__row" data-pos="3" data-group="sensor" data-x="28.95" data-y="36.79"><span class="bom__no">3</span><span class="bom__name">Metallsensor</span><span class="bom__pn">10013899</span><span class="bom__qty">1×</span></button></li>
+            </ol>
+            <p class="explorer__foot">Positionen 12–14 und 16–18 (Scharniere, Lager) sind in der Explosionsdarstellung nicht einzeln beziffert und haben deshalb keinen Bildmarker. Die Zuordnung zu Baugruppen ist eine Lesehilfe für diese Website, keine Angabe aus der Zeichnung.</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
