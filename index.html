@@ -176,8 +176,8 @@
       <div class="explorer" id="aufbau">
         <div class="explorer__head">
           <div>
-            <h3 class="explorer__title">26 Teile, aus der Zeichnung erklärt.</h3>
-            <p class="explorer__sub">Position im Bild anklicken oder in der Stückliste wählen — beides hebt dasselbe Teil hervor. Daten aus der Zusammenstellungszeichnung 10013869 (Jean Barraz, 03.07.2026, Massstab 1:5).</p>
+            <h3 class="explorer__title">26 Positionen, aus der Zeichnung erklärt.</h3>
+            <p class="explorer__sub">Position im Bild anklicken oder in der Stückliste wählen — beides hebt dasselbe Teil hervor. 50 Einzelteile in 26 Positionen, Daten aus der Zusammenstellungszeichnung 10013869 (Jean Barraz, 03.07.2026, Massstab 1:5).</p>
           </div>
           <a class="explorer__original" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">Originalzeichnung ↗</a>
         </div>
@@ -249,7 +249,7 @@
         <div class="video-card__copy">
           <p class="tag tag--light">MAKING-OF</p>
           <h3>CAD-Arbeit am Sackhalter</h3>
-          <p>Das vorhandene Projektvideo zeigt einen echten Ausschnitt aus der Konstruktion in Onshape — als Behind-the-Scenes-Inhalt für Website, Präsentation und Social Media.</p>
+          <p>Das vorhandene Projektvideo zeigt einen echten Ausschnitt aus der CAD-Konstruktion in Siemens NX — als Behind-the-Scenes-Inhalt für Website, Präsentation und Social Media.</p>
           <p class="video-card__note">Für die spätere Kampagne ist zusätzlich ein kurzes Erklärvideo mit digitalem Zwilling sowie eine reale Vorher-Nachher-Demonstration vorgesehen.</p>
         </div>
         <video controls preload="metadata" poster="assets/cad_poster.webp" playsinline>
@@ -320,7 +320,7 @@
         <article><span>ÜBERLAST</span><h3>Kraftüberwachung</h3><p>Motorstrom und maximale Fahrzeit sollen Blockaden beziehungsweise zu hohen Widerstand erkennen.</p></article>
         <article><span>ENDLAGE</span><h3>Wegbegrenzung</h3><p>Endschalter und ein zusätzlicher mechanischer Anschlag sollen unzulässige Fahrwege verhindern.</p></article>
         <article><span>ANZEIGE</span><h3>Status-Display</h3><p>Zeigt den Betriebszustand laufend an — betriebsbereit, Pressvorgang aktiv, Überlast oder Störung.</p></article>
-        <article><span>ELEKTRIK</span><h3>Trennung 230 V / 24 V</h3><p>230-V-Bereich vollständig abgedeckt; alle berührbaren Metallteile geerdet.</p></article>
+        <article><span>ELEKTRIK</span><h3>Trennung 230 V / 24 V</h3><p>Der 230-V-Bereich soll vollständig abgedeckt und räumlich vom Pressraum getrennt sein, alle berührbaren Metallteile geerdet. Erdung, Verkabelung und Absicherung sind vor der ersten Inbetriebnahme durch eine fachkundige Person zu prüfen.</p></article>
       </div>
 
       <div class="safety__interlocks">
@@ -345,7 +345,7 @@
         </div>
         <div class="safety__materials-col safety__materials-col--no">
           <h4>Nicht erlaubt</h4>
-          <ul><li>Glas, Dosen, Metallteile</li><li>Batterien, Spraydosen, Chemikalien</li><li>heisse Gegenstände &amp; Asche</li><li>grössere Mengen Flüssigkeit</li></ul>
+          <ul><li>Glas, Dosen, Metallteile</li><li>Batterien, Akkus, Spraydosen</li><li>Chemikalien &amp; brennbare Stoffe</li><li>scharfe Gegenstände</li><li>heisse Gegenstände &amp; Asche</li><li>grössere Mengen Flüssigkeit</li></ul>
         </div>
       </div>
 
@@ -367,13 +367,16 @@
           <tr><td>Betriebsspannung Antrieb / Steuerung</td><td>24 V DC</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
           <tr><td>max. Druckkraft Linearantrieb</td><td>3000 N</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
           <tr><td>Hub</td><td>200 mm</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
-          <tr><td>Vorschubgeschwindigkeit</td><td>11 mm/s</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
+          <tr><td>Vorschubgeschwindigkeit (Auslegungsannahme war 20 mm/s)</td><td>11 mm/s</td><td><span class="state state--gap">Antriebsdaten</span></td></tr>
           <tr><td>angestrebte Volumenreduktion</td><td>40–50 %</td><td><span class="state state--target">Ziel</span></td></tr>
-          <tr><td>Zykluszeit (Schätzung aus Hub &amp; Vorschub)</td><td>ca. 30–60 s</td><td><span class="state state--test">Test offen</span></td></tr>
+          <tr><td>Zykluszeit — Anforderung Pflichtenheft F1.4</td><td>≤ 30 s</td><td><span class="state state--target">Anforderung</span></td></tr>
+          <tr><td>Zykluszeit — Angabe Funktionsprinzip</td><td>ca. 30–60 s</td><td><span class="state state--test">Test offen</span></td></tr>
           <tr><td>Geräuschpegel</td><td>≤ 80 dB(A)</td><td><span class="state state--target">Anforderung</span></td></tr>
           <tr><td>vorgesehene Sack-/Behältergrössen</td><td>35 / 60 / 110 L</td><td><span class="state state--target">Ziel</span></td></tr>
         </tbody>
       </table>
+
+      <p class="spec-note">Zur Zykluszeit: Aus 200 mm Hub und 11 mm/s Vorschub ergeben sich rechnerisch rund 18 s je Richtung, also etwa 36 s für Vor- und Rückhub. Die Anforderung F1.4 (≤ 30 s) ist mit dem gewählten Antrieb voraussichtlich nicht erreichbar. Der Antrieb wurde bewusst nach Presskraft und Hub ausgewählt — die Machbarkeitsanalyse hält fest, dass eine zuverlässige Verdichtung höher gewichtet wird als eine kurze Zykluszeit. Der tatsächliche Wert wird im Prototypentest gemessen.</p>
 
       <div class="spec-money">
         <div><span class="tag tag--light">PROJEKTSTAND</span><b>CHF 952.67</b><small>Materialkosten Prototyp</small></div>
@@ -389,8 +392,8 @@
     <div class="wrap reveal">
       <div class="section-head">
         <p class="tag">D.01 — MARKT &amp; POSITIONIERUNG</p>
-        <h2 class="section-title">Zwischen Handpresse und Premium-Kompaktor.</h2>
-        <p class="section-sub">BinPress soll elektrisch und komfortabler als manuelle Lösungen sein — gleichzeitig kompakter, nachrüstbarer und deutlich günstiger als fest eingebaute Premium-Systeme.</p>
+        <h2 class="section-title">Elektrisch — auf dem Preisniveau einer guten Handpresse.</h2>
+        <p class="section-sub">Der vorläufige Zielpreis liegt etwa dort, wo heute hochwertige manuelle Lösungen liegen. Gegenüber diesen sollen Antrieb und Bedienkomfort den Unterschied machen, gegenüber fest eingebauten Premium-Kompaktoren die kompakte, nachrüstbare Bauweise und ein Bruchteil des Preises.</p>
       </div>
 
       <div class="compare" role="table" aria-label="Marktvergleich">
@@ -410,7 +413,7 @@
           <ul><li>elektrisch</li><li>feste Küchenintegration</li><li>hochpreisiges Segment</li><li>nicht als einfacher Aufsatz gedacht</li></ul>
         </article>
       </div>
-      <p class="market__note">Preisreferenzen: Recherchestand 22.07.2026. Der BinPress-Zielpreis ist keine bestätigte Serienkalkulation und setzt eine deutliche Optimierung von Konstruktion, Montage und Einkauf voraus.</p>
+      <p class="market__note">Preisreferenzen: Recherchestand 22.07.2026. Der BinPress-Zielpreis ist keine bestätigte Serienkalkulation und setzt eine deutliche Optimierung von Konstruktion, Montage und Einkauf voraus. Er stammt aus dem Marketingkonzept v0.3 (22.07.2026); das ältere Pflichtenheft v0.2 nennt CHF 500–1000. Die Spanne ist im Projektteam noch abschliessend festzulegen.</p>
     </div>
   </section>
 

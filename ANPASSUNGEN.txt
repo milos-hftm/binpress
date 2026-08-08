@@ -26,3 +26,38 @@ Stand: 07.08.2026
 5. Team:
    Nur Projektleiterin und Stv. Projektleitung konkret als Rollen ausgewiesen;
    übrige Teammitglieder ohne unbestätigte Fachrollen.
+
+
+ABGLEICH MIT PROJEKTARCHIV
+Stand: 09.08.2026
+
+Alle Angaben der Website wurden gegen die Projektdokumente geprüft.
+Stückliste (26 Positionen, Teilenummern, Mengen) und Titelblock stimmen
+1:1 mit der Zusammenstellungszeichnung 10013869 überein.
+
+Korrigiert:
+
+6. CAD-System: "Onshape" war falsch -> Siemens NX.
+   Quelle: Projektantrag (Severin, Robin); Archivformate .par / .jt sind Siemens.
+
+7. Vorschubgeschwindigkeit 11 mm/s: Status "Ausgelegt" -> "Antriebsdaten".
+   Die Machbarkeitsanalyse fuehrt den Wert als "Geringer" gegenueber der
+   Auslegungsannahme von 20 mm/s.
+
+8. Zykluszeit: Anforderung Pflichtenheft F1.4 (<= 30 s) ergaenzt.
+   Rechnerisch ~36 s (2 x 200 mm / 11 mm/s) - Anforderung voraussichtlich
+   nicht erreichbar, Begruendung und Testvorbehalt als Fussnote ergaenzt.
+
+9. Marktabschnitt: Titel "Zwischen Handpresse und Premium-Kompaktor" war
+   bei CHF 299-399 nicht haltbar (Joseph Joseph Titan: CHF 341).
+   Neu: "Elektrisch - auf dem Preisniveau einer guten Handpresse."
+   Offene Preisdiskrepanz zum Pflichtenheft v0.2 (CHF 500-1000) im
+   Quellenhinweis offengelegt.
+
+10. Stueckliste: "26 Teile" -> "26 Positionen" (50 Einzelteile).
+
+11. Verbotene Abfaelle: "scharfe Gegenstaende", Akkus und brennbare Stoffe
+    ergaenzt (Sicherheitskonzept, Kap. "Erlaubte und verbotene Abfaelle").
+
+12. Elektrik 230 V / 24 V: vom Indikativ in die Soll-Form gesetzt; Pruefung
+    durch fachkundige Person vor Inbetriebnahme ergaenzt (Sicherheitskonzept).
