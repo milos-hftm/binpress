@@ -9,6 +9,12 @@ Die Inhalte werden laufend mit den Unterlagen aus der bereitgestellten Projekt-Z
 
 (sobald GitHub Pages im Repo aktiviert ist — Settings → Pages → main → /root)
 
+## Bildnachweis / KI-Deklaration
+
+Die Produktdarstellungen im Abschnitt **Ausblick** sowie das Hero-Bild sind **KI-generierte Designvisualisierungen** eines möglichen Serienprodukts. Sie zeigen kein gebautes Gerät. Auf der Website sind sie mit dem Label „KI-Visualisierung" gekennzeichnet, entsprechend der HFTM-Richtlinie „KI an der hftm einsetzen (Studierende)", Kapitel 1.4 Transparenz.
+
+Echte Aufnahmen des Prototyps stehen im Abschnitt **Der echte Prototyp**. Die Zusammenstellungszeichnung (10013869) stammt aus der Projektkonstruktion.
+
 ## Was am 08.08.2026 dazugekommen ist
 
 - neue Spec-Karte **Vorschubgeschwindigkeit (11 mm/s)** und Zykluszeit-Schätzung (ca. 30–60 s) aus Hub/Vorschub ergänzt, Quelle: Machbarkeitsanalyse
@@ -50,6 +56,11 @@ BinPress-Website-Marketing/
     ├── hftm_logo.webp
     ├── cad_poster.webp
     ├── app-konzept.jpg
+    ├── vision-hero.jpg          (KI-generiert)
+    ├── vision-kitchen.jpg       (KI-generiert)
+    ├── vision-detail.jpg        (KI-generiert)
+    ├── vision-brand.jpg         (KI-generiert)
+    ├── zusammenstellung.jpg
     └── cad-making-of.mp4
 ```
 

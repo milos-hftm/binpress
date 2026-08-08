@@ -51,7 +51,7 @@
   <section class="hero reveal">
     <div class="wrap hero__grid">
       <div class="hero__copy">
-        <p class="tag">FIG. 01 — PROTOTYP</p>
+        <p class="tag">HAUSHALTS-ABFALLVERDICHTER · HFTM 2026</p>
         <h1 class="hero__title">Mehr Platz.<br><span>Im Sack.</span></h1>
         <p class="hero__lead">BinPress verdichtet leichte, trockene Haushaltsabfälle elektrisch direkt im Abfallbehälter — auf Knopfdruck, statt von Hand nachzudrücken.</p>
         <div class="hero__cta">
@@ -64,17 +64,17 @@
       <figure class="hero-product">
         <div class="hero-product__frame">
           <div class="hero-product__photo">
-            <img src="assets/proto_full.webp" alt="Aktueller BinPress-Prototyp auf der Werkbank" fetchpriority="high">
-            <div class="hero-product__vignette" aria-hidden="true"></div>
+            <img src="assets/vision-hero.jpg" alt="Designvisualisierung von BinPress als Serienprodukt in dunkler Küche" fetchpriority="high">
+            <span class="img-flag">KI-Visualisierung</span>
           </div>
-          <ul class="hero-product__callouts" aria-hidden="true">
-            <li style="--x:27%;--y:20%"><i></i><b>200 mm</b><span>Hub</span></li>
-            <li style="--x:83%;--y:24%"><i></i><b>24 V DC</b><span>Antrieb</span></li>
-            <li style="--x:52%;--y:52%"><i></i><b>3000 N</b><span>Presskraft</span></li>
-            <li style="--x:70%;--y:80%"><i></i><b>11 mm/s</b><span>Vorschub</span></li>
-          </ul>
+          <dl class="hero-specs">
+            <div><dt>Presskraft</dt><dd>3000 N</dd></div>
+            <div><dt>Hub</dt><dd>200 mm</dd></div>
+            <div><dt>Antrieb</dt><dd>24 V DC</dd></div>
+            <div><dt>Vorschub</dt><dd>11 mm/s</dd></div>
+          </dl>
         </div>
-        <figcaption><b>Status 07.08.2026 —</b> Einzelteile gefertigt; Montage &amp; Tests folgen.</figcaption>
+        <figcaption><b>Designstudie, kein Foto.</b> So könnte BinPress als Serienprodukt aussehen. Der reale Prototyp ist ein Aluminiumaufbau — <a href="#prototyp">hier ansehen</a>.</figcaption>
       </figure>
     </div>
   </section>
@@ -172,15 +172,28 @@
         <li class="step"><span class="step__no">03</span><h3>Elektrisch verdichten</h3><p>Die Gewindespindel bewegt die Pressplatte mit rund 3000 N über den 200-mm-Hub; Führungsstreben halten sie stabil. Ein Display zeigt den Zustand laufend an.</p></li>
         <li class="step"><span class="step__no">04</span><h3>Auswurf &amp; Rückfahrt</h3><p>Am Ende des Presswegs fällt der verdichtete Abfall durch einen schmalen Schlitz in den Sack. Danach fährt die Pressplatte zurück in die Ausgangsposition.</p></li>
       </ol>
+
+      <figure class="assembly">
+        <a class="assembly__frame" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">
+          <img src="assets/zusammenstellung.jpg" alt="Zusammenstellungszeichnung BinPress mit Explosionsdarstellung und Stückliste, 26 Positionen" loading="lazy">
+        </a>
+        <figcaption>
+          <div>
+            <b>Zusammenstellungszeichnung 10013869</b>
+            <span>Explosionsdarstellung mit 26 Positionen — Grundplatte, Mantel, Presseinsatz, Sackhalter, Linearmotor, Metallsensor und Scharniere. Erstellt von Jean Barraz, 03.07.2026, Massstab 1:5.</span>
+          </div>
+          <a class="assembly__zoom" href="assets/zusammenstellung.jpg" target="_blank" rel="noopener">Vollbild öffnen ↗</a>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <section class="product" id="prototyp">
     <div class="wrap reveal">
       <div class="section-head product__head">
-        <p class="tag">B.02 — DER PROTOTYP</p>
-        <h2 class="section-title">Von der Konstruktion in die Werkstatt.</h2>
-        <p class="section-sub">Gemäss Projektstatus vom 07.08.2026 sind die Einzelteile gefertigt; vollständige Montage, Inbetriebnahme und Tests stehen noch aus.</p>
+        <p class="tag">B.02 — DER ECHTE PROTOTYP</p>
+        <h2 class="section-title">So sieht BinPress heute wirklich aus.</h2>
+        <p class="section-sub">Keine Visualisierung, sondern der gefertigte Aufbau in der Werkstatt. Gemäss Projektstatus vom 07.08.2026 sind die Einzelteile gefertigt; vollständige Montage, Inbetriebnahme und Tests stehen noch aus.</p>
       </div>
 
       <div class="product-showcase">
@@ -214,22 +227,49 @@
   </section>
 
   <section class="vision" id="vision">
-    <div class="wrap vision__grid reveal">
-      <figure class="vision-figure">
-        <img src="assets/app-konzept.jpg" alt="Frühes App-Konzept: Dashboard, Füllstände pro Standort, Historie, Simulator-Modus und Einstellungen" loading="lazy">
-      </figure>
-      <div class="vision-copy">
-        <p class="tag">C.01 — AUSBLICK, KONZEPT</p>
-        <h2 class="section-title">Über die einzelne Presse hinaus gedacht.</h2>
-        <p class="section-sub">Ein früher UI-Entwurf zeigt, wohin sich BinPress entwickeln könnte: eine App, die Füllstand und Verdichtung mehrerer Geräte sichtbar macht. Das ist ein Gestaltungskonzept — nicht Teil des aktuellen Marketingkonzepts, des Prototyps oder einer bestätigten Roadmap.</p>
-        <dl class="vision-features">
-          <div><dt>Dashboard</dt><dd>Füllstände und Verdichtungen aller Stationen auf einen Blick</dd></div>
-          <div><dt>Live-Füllstand</dt><dd>Status pro Behälter, inklusive Warnung bei „bald voll"</dd></div>
-          <div><dt>Historie &amp; Statistik</dt><dd>Eingespartes Volumen und Presszyklen über Zeit</dd></div>
-          <div><dt>Simulator-Modus</dt><dd>Szenarien offline testen, ohne reale Geräte</dd></div>
-        </dl>
-        <p class="vision-note">Als Diskussionsgrundlage für eine mögliche spätere Erweiterung gedacht, nicht als zugesichertes Feature.</p>
+    <div class="wrap reveal">
+      <div class="section-head">
+        <p class="tag">C.01 — AUSBLICK</p>
+        <h2 class="section-title">Wohin BinPress sich entwickeln könnte.</h2>
+        <p class="section-sub">Die folgenden Darstellungen sind Gestaltungskonzepte für ein mögliches Serienprodukt — kein gebautes Gerät, keine zugesicherte Roadmap. Der aktuelle Projektstand bleibt der Prototyp weiter oben.</p>
       </div>
+
+      <div class="vision-gallery">
+        <figure class="vision-shot vision-shot--wide">
+          <img src="assets/vision-kitchen.jpg" alt="Designvisualisierung: BinPress als Serienprodukt in einer modernen Küche" loading="lazy">
+          <span class="img-flag">KI-Visualisierung</span>
+          <figcaption><b>Im Alltag gedacht</b><span>Kompakter Aufsatz statt Werkstattaufbau</span></figcaption>
+        </figure>
+        <figure class="vision-shot">
+          <img src="assets/vision-detail.jpg" alt="Designvisualisierung: Detail von Deckel, Verriegelungshebeln und beleuchtetem Starttaster" loading="lazy">
+          <span class="img-flag">KI-Visualisierung</span>
+          <figcaption><b>Bedienung</b><span>Ein Taster, Statusring, verriegelter Deckel</span></figcaption>
+        </figure>
+        <figure class="vision-shot">
+          <img src="assets/vision-brand.jpg" alt="Designvisualisierung: BinPress Serienprodukt in Studioumgebung" loading="lazy">
+          <span class="img-flag">KI-Visualisierung</span>
+          <figcaption><b>Formsprache</b><span>Dunkles Gehäuse, Aluminiumkante, grüner Akzent</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="vision__grid vision__grid--app">
+        <figure class="vision-figure">
+          <img src="assets/app-konzept.jpg" alt="Frühes App-Konzept: Dashboard, Füllstände pro Standort, Historie, Simulator-Modus und Einstellungen" loading="lazy">
+        </figure>
+        <div class="vision-copy">
+          <p class="tag">APP-KONZEPT</p>
+          <h3 class="vision-subtitle">Mehrere Geräte im Blick.</h3>
+          <p class="section-sub">Ein früher UI-Entwurf: eine App, die Füllstand und Verdichtung mehrerer Stationen sichtbar macht. Nicht Teil des aktuellen Marketingkonzepts oder des Prototyps.</p>
+          <dl class="vision-features">
+            <div><dt>Dashboard</dt><dd>Füllstände und Verdichtungen aller Stationen auf einen Blick</dd></div>
+            <div><dt>Live-Füllstand</dt><dd>Status pro Behälter, inklusive Warnung bei „bald voll"</dd></div>
+            <div><dt>Historie &amp; Statistik</dt><dd>Eingespartes Volumen und Presszyklen über Zeit</dd></div>
+            <div><dt>Simulator-Modus</dt><dd>Szenarien offline testen, ohne reale Geräte</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <p class="vision-note">Bildhinweis: Die Produktdarstellungen in diesem Abschnitt wurden mit KI-Bildgeneratoren auf Basis des Konstruktionsstands erstellt und sind als Designstudien gekennzeichnet. Sie zeigen kein gefertigtes Gerät.</p>
     </div>
   </section>
 
