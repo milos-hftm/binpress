@@ -1,4 +1,19 @@
 (function () {
+  var root = document.documentElement;
+  var themeToggle = document.getElementById('themeToggle');
+  if (themeToggle) {
+    var setPressed = function () {
+      themeToggle.setAttribute('aria-pressed', root.getAttribute('data-theme') === 'dark' ? 'true' : 'false');
+    };
+    setPressed();
+    themeToggle.addEventListener('click', function () {
+      var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', next);
+      try { localStorage.setItem('bp-theme', next); } catch (e) {}
+      setPressed();
+    });
+  }
+
   var body = document.body;
   var toggle = document.getElementById('navToggle');
   var menu = document.getElementById('menu');

@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0c241a">
+  <script>(function(){try{var s=localStorage.getItem('bp-theme');var t=s||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
   <title>BinPress — Mehr Platz im Sack</title>
   <meta name="description" content="BinPress ist ein kompakter, elektrisch angetriebener Haushalts-Abfallverdichter als nachrüstbarer Aufsatz. Prototyp der HFTM Grenchen — Ziel: 40–50 % Volumenreduktion.">
   <meta property="og:title" content="BinPress — Mehr Platz im Sack">
@@ -37,6 +38,10 @@
       <a href="#markt">Markt</a>
     </nav>
 
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="Farbschema wechseln" aria-pressed="false">
+      <svg class="theme-toggle__sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+      <svg class="theme-toggle__moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"/></svg>
+    </button>
     <a class="nav__cta" href="#markttest">Markttest</a>
     <button class="nav__toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
       <span></span><span></span><span></span>
