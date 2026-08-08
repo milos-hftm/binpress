@@ -192,10 +192,29 @@
         </div>
 
         <div class="explorer__grid">
-          <figure class="explorer__stage" id="explorerStage">
-            <img src="assets/explosion.jpg" alt="Explosionsdarstellung des BinPress mit nummerierten Positionen" loading="lazy">
-            <div class="explorer__spots" id="explorerSpots"></div>
-          </figure>
+          <div class="explorer__views is-3d" id="explorerViews">
+            <div class="viewtabs" role="tablist" aria-label="Darstellung wählen">
+              <button type="button" class="viewtab is-active" data-view="3d" role="tab" aria-selected="true">3D-Modell</button>
+              <button type="button" class="viewtab" data-view="img" role="tab" aria-selected="false">Explosionszeichnung</button>
+            </div>
+
+            <div class="viewer" id="viewerStage">
+              <canvas id="viewer3d" aria-label="Interaktives 3D-Modell der BinPress-Baugruppe"></canvas>
+              <p class="viewer__state viewer__state--load">Baugruppe wird geladen …</p>
+              <p class="viewer__state viewer__state--fail">3D-Ansicht in diesem Browser nicht verfügbar. Die Explosionszeichnung zeigt dieselben Positionen.</p>
+              <div class="viewer__hud">
+                <label class="viewer__ctl"><span>Explosion</span><input type="range" id="viewerExplode" min="0" max="100" value="0" step="1" aria-label="Explosionsgrad"></label>
+                <button type="button" class="viewer__btn" id="viewerReset">Zurücksetzen</button>
+              </div>
+              <p class="viewer__hint">Ziehen zum Drehen · Scrollen zum Zoomen · Bauteil anklicken</p>
+              <p class="viewer__info" id="viewerInfo"></p>
+            </div>
+
+            <figure class="explorer__stage" id="explorerStage">
+              <img src="assets/explosion.jpg" alt="Explosionsdarstellung des BinPress mit nummerierten Positionen" loading="lazy">
+              <div class="explorer__spots" id="explorerSpots"></div>
+            </figure>
+          </div>
 
           <div class="explorer__panel">
             <div class="explorer__readout" id="explorerReadout" aria-live="polite">
@@ -230,7 +249,7 @@
               <li><button type="button" class="bom__row" data-pos="13" data-group="deckel"><span class="bom__no">13</span><span class="bom__name">Hinge DIN 7954 C 60</span><span class="bom__pn">90003727</span><span class="bom__qty">6×</span></button></li>
               <li><button type="button" class="bom__row" data-pos="3" data-group="sensor" data-x="28.95" data-y="36.79"><span class="bom__no">3</span><span class="bom__name">Metallsensor</span><span class="bom__pn">10013899</span><span class="bom__qty">1×</span></button></li>
             </ol>
-            <p class="explorer__foot">Positionen 12–14 und 16–18 (Scharniere, Lager) sind in der Explosionsdarstellung nicht einzeln beziffert und haben deshalb keinen Bildmarker. Die Zuordnung zu Baugruppen ist eine Lesehilfe für diese Website, keine Angabe aus der Zeichnung.</p>
+            <p class="explorer__foot">Positionen 12–14 und 16–18 (Scharniere, Lager) sind in der Explosionsdarstellung nicht einzeln beziffert und in der CAD-Baugruppe nicht als Volumenkörper enthalten — sie haben deshalb weder Bildmarker noch 3D-Körper. Die übrigen 20 Positionen sind im Modell einzeln anwählbar. Die Zuordnung zu Baugruppen ist eine Lesehilfe für diese Website, keine Angabe aus der Zeichnung.</p>
           </div>
         </div>
       </div>
@@ -467,6 +486,7 @@
   </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="script.js?v=2"></script>
+<script src="viewer.js?v=2" defer></script>
 </body>
 </html>

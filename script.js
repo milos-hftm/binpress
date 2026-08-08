@@ -84,13 +84,21 @@
       spots[pos] = spot;
     });
 
+    function clearReadout() {
+      var hint = document.createElement('p');
+      hint.className = 'explorer__hint';
+      hint.textContent = 'Position wählen, um Teilenummer, Benennung und Menge zu sehen.';
+      readout.replaceChildren(hint);
+    }
+
     function select(pos) {
       selected = pos;
       rows.forEach(function (r) { r.classList.toggle('is-selected', r.getAttribute('data-pos') === pos); });
       Object.keys(spots).forEach(function (p) { spots[p].classList.toggle('is-selected', p === pos); });
+      document.dispatchEvent(new CustomEvent('bp:select', { detail: pos }));
 
       var row = rows.filter(function (r) { return r.getAttribute('data-pos') === pos; })[0];
-      if (!row) return;
+      if (!row) { clearReadout(); return; }
       var name = row.querySelector('.bom__name').textContent;
       var pn = row.querySelector('.bom__pn').textContent;
       var qty = row.querySelector('.bom__qty').textContent.replace('×', '');
@@ -121,6 +129,8 @@
       readout.replaceChildren(top, el('p', 'readout__name', name), meta);
     }
 
+    window.bpSelect = select;
+
     rows.forEach(function (row) {
       row.addEventListener('click', function () { select(row.getAttribute('data-pos')); });
     });
@@ -137,6 +147,7 @@
       chip.addEventListener('click', function () {
         var group = chip.getAttribute('data-group');
         chips.forEach(function (c) { c.classList.toggle('is-active', c === chip); });
+        document.dispatchEvent(new CustomEvent('bp:filter', { detail: group }));
         rows.forEach(function (r) {
           r.classList.toggle('is-hidden', group !== 'all' && r.getAttribute('data-group') !== group);
         });
@@ -151,12 +162,28 @@
             selected = null;
             rows.forEach(function (r) { r.classList.remove('is-selected'); });
             Object.keys(spots).forEach(function (p) { spots[p].classList.remove('is-selected'); });
-            var hint = document.createElement('p');
-            hint.className = 'explorer__hint';
-            hint.textContent = 'Position wählen, um Teilenummer, Benennung und Menge zu sehen.';
-            readout.replaceChildren(hint);
+            document.dispatchEvent(new CustomEvent('bp:select', { detail: null }));
+            clearReadout();
           }
         }
+      });
+    });
+  }
+
+  var views = document.getElementById('explorerViews');
+  if (views) {
+    var tabs = Array.prototype.slice.call(views.querySelectorAll('.viewtab'));
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        var v = tab.getAttribute('data-view');
+        views.classList.toggle('is-3d', v === '3d');
+        views.classList.toggle('is-img', v === 'img');
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.classList.toggle('is-active', on);
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+        });
+        window.dispatchEvent(new Event('resize'));
       });
     });
   }

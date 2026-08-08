@@ -5,9 +5,11 @@ Die Inhalte werden laufend mit den Unterlagen aus der bereitgestellten Projekt-Z
 
 ## Live
 
-**https://milos-hftm.github.io/binpress-website/**
+**https://milos-hftm.github.io/binpress/**
 
-(sobald GitHub Pages im Repo aktiviert ist — Settings → Pages → main → /root)
+Gehostet über GitHub Pages (Branch `main`, Root). Die frühere Adresse
+`…/binpress-website/` ist nach der Repo-Umbenennung **nicht** mehr erreichbar —
+GitHub leitet Repository-URLs weiter, Pages-URLs nicht.
 
 ## Bildnachweis / KI-Deklaration
 
@@ -44,10 +46,11 @@ Die früheren Werkstattfotos des Prototyps wurden entfernt: es waren Standbilder
 ## Dateien
 
 ```text
-BinPress-Website-Marketing/
+binpress/
 ├── index.html
 ├── style.css
 ├── script.js
+├── viewer.js                    (3D-Viewer, WebGL, ohne Fremdbibliothek)
 ├── README.md
 └── assets/
     ├── hftm_logo.webp
@@ -58,8 +61,32 @@ BinPress-Website-Marketing/
     ├── vision-detail.jpg        (KI-generiert)
     ├── vision-brand.jpg         (KI-generiert)
     ├── zusammenstellung.jpg
-    └── cad-making-of.mp4
+    ├── cad-making-of.mp4
+    ├── binpress.bin             (Geometrie, 459 KB)
+    └── binpress.json            (Teile-Metadaten)
 ```
+
+## 3D-Modell
+
+Der Abschnitt **Aufbau** zeigt die Gesamtbaugruppe als drehbares 3D-Modell.
+Quelle ist die unveränderte CAD-Datei `10013869_A_1-Bin Press.stp` aus dem
+Projektarchiv, tesselliert mit OpenCascade (`occt-import-js`) und in ein
+kompaktes Binärformat gepackt: 34 Körper, 22'590 Dreiecke, 459 KB.
+
+Die Teilenummern aus der STEP-Datei stimmen mit der Stückliste der
+Zusammenstellungszeichnung überein, deshalb sind Modell und Stückliste
+gekoppelt — ein Klick im Modell markiert die Position in der Liste und
+umgekehrt.
+
+**20 der 26 Positionen** haben einen 3D-Körper. Die Positionen 12–14 und
+16–18 (kleine Scharniere, Lager) sind in der CAD-Baugruppe nicht als
+Volumenkörper enthalten; sie erscheinen deshalb nur in der Stückliste.
+Dieselben sechs Positionen sind auch in der Explosionszeichnung nicht
+einzeln beziffert.
+
+Der Viewer nutzt WebGL 1 ohne externe Bibliothek. Fehlt WebGL, blendet die
+Seite einen Hinweis ein und die Explosionszeichnung bleibt über den
+Umschalter erreichbar.
 
 ## Geplant: Produktvideo
 

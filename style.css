@@ -213,6 +213,35 @@ button,input,select{font:inherit}
 .spot.is-selected{border-color:var(--accent);background:color-mix(in srgb,var(--accent) 26%,transparent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 25%,transparent)}
 .spot.is-dimmed{opacity:.12;pointer-events:none}
 
+/* --- Darstellungswechsel 3D / Zeichnung --- */
+.explorer__views{min-width:0}
+.viewtabs{display:inline-flex;gap:2px;padding:3px;margin:0 0 12px;border:1px solid var(--line);border-radius:999px;background:var(--surface)}
+.viewtab{font-family:var(--f-mono);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;padding:7px 14px;border:0;border-radius:999px;background:transparent;color:var(--text-muted);cursor:pointer;transition:background .15s ease,color .15s ease}
+.viewtab:hover{color:var(--accent)}
+.viewtab.is-active{background:var(--accent);color:var(--accent-ink)}
+.viewtab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.explorer__views.is-3d .explorer__stage{display:none}
+.explorer__views.is-img .viewer{display:none}
+
+/* --- 3D-Viewer --- */
+.viewer{position:relative;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:linear-gradient(170deg,var(--surface),var(--bg-alt))}
+.viewer canvas{display:block;width:100%;height:clamp(320px,46vh,520px);touch-action:none;cursor:grab}
+.viewer canvas:active{cursor:grabbing}
+.viewer__state{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;margin:0;padding:0 32px;text-align:center;font-family:var(--f-mono);font-size:.74rem;color:var(--text-muted);pointer-events:none}
+.viewer__state--fail{display:none}
+.viewer.is-ready .viewer__state--load{display:none}
+.viewer.is-unsupported canvas,.viewer.is-unsupported .viewer__hud,.viewer.is-unsupported .viewer__hint,.viewer.is-unsupported .viewer__state--load{display:none}
+.viewer.is-unsupported{min-height:180px}
+.viewer.is-unsupported .viewer__state--fail{display:flex}
+.viewer__hud{position:absolute;left:14px;right:14px;bottom:14px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:10px 14px;border-radius:999px;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 88%,transparent);backdrop-filter:blur(8px)}
+.viewer__ctl{display:flex;align-items:center;gap:10px;flex:1 1 170px;min-width:0}
+.viewer__ctl span{font-family:var(--f-mono);font-size:.62rem;letter-spacing:.09em;text-transform:uppercase;color:var(--text-muted);white-space:nowrap}
+.viewer__ctl input[type=range]{flex:1;min-width:80px;accent-color:var(--accent);cursor:pointer}
+.viewer__btn{flex:none;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text-muted);cursor:pointer;transition:border-color .15s ease,color .15s ease}
+.viewer__btn:hover{border-color:var(--accent);color:var(--accent)}
+.viewer__hint{position:absolute;top:12px;left:16px;margin:0;font-family:var(--f-mono);font-size:.62rem;color:var(--text-muted);opacity:.75;pointer-events:none}
+.viewer__info{position:absolute;top:12px;right:16px;margin:0;font-family:var(--f-mono);font-size:.62rem;color:var(--text-muted);opacity:.75;pointer-events:none;text-align:right}
+
 .explorer__panel{display:flex;flex-direction:column;min-width:0}
 .explorer__readout{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:18px 20px;margin-bottom:14px;min-height:118px}
 .explorer__hint{margin:0;font-size:.88rem;color:var(--text-muted)}
@@ -400,6 +429,11 @@ button,input,select{font:inherit}
   .hero__lead{font-size:1.02rem}
   .hero-specs{grid-template-columns:1fr 1fr}
   .explorer{margin-top:44px}
+  .viewer canvas{height:clamp(280px,58vw,380px)}
+  .viewer__info{display:none}
+  .viewer__hint{font-size:.58rem}
+  .viewer__hud{left:10px;right:10px;bottom:10px;gap:10px;padding:9px 12px;border-radius:var(--radius)}
+  .viewtab{padding:7px 11px;font-size:.62rem}
   .spot{width:9.5%;height:5%}
   .bom__row{grid-template-columns:30px 1fr auto;gap:9px;padding:11px 12px}
   .bom__pn{display:none}
