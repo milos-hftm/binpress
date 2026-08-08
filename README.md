@@ -13,7 +13,9 @@ Die Inhalte werden laufend mit den Unterlagen aus der bereitgestellten Projekt-Z
 
 Die Produktdarstellungen im Abschnitt **Ausblick** sowie das Hero-Bild sind **KI-generierte Designvisualisierungen** eines möglichen Serienprodukts. Sie zeigen kein gebautes Gerät. Auf der Website sind sie mit dem Label „KI-Visualisierung" gekennzeichnet, entsprechend der HFTM-Richtlinie „KI an der hftm einsetzen (Studierende)", Kapitel 1.4 Transparenz.
 
-Echte Aufnahmen des Prototyps stehen im Abschnitt **Der echte Prototyp**. Die Zusammenstellungszeichnung (10013869) stammt aus der Projektkonstruktion.
+Die Zusammenstellungszeichnung (10013869) und das CAD-Making-of-Video stammen unverändert aus der Projektarbeit.
+
+Die früheren Werkstattfotos des Prototyps wurden entfernt: es waren Standbilder aus einem Handyvideo (unscharf, überbelichtet, Hände im Bild) und in dieser Qualität für eine Produktseite nicht brauchbar. Sobald es saubere Aufnahmen des montierten Prototyps gibt, gehören sie in den Abschnitt **Projektstand**.
 
 ## Was am 08.08.2026 dazugekommen ist
 
@@ -30,7 +32,6 @@ Echte Aufnahmen des Prototyps stehen im Abschnitt **Der echte Prototyp**. Die Zu
 - Zielgruppenbereich für Einpersonenhaushalte, WGs und Familien
 - interaktive Vorher-/Nachher-Animation mit klarer Kennzeichnung als Ziel/Schemadarstellung
 - echtes CAD-Making-of-Video aus dem Projektmaterial integriert und fürs Web komprimiert
-- echte Prototypbilder aus dem Hauptdokument eingebunden
 - Sicherheitsbereich ergänzt
 - technische Daten in **Auslegung / Ziel / Anforderung / Test offen** getrennt
 - Projektstatus korrigiert: Montage und praktische Tests sind noch ausstehend
@@ -49,10 +50,6 @@ BinPress-Website-Marketing/
 ├── script.js
 ├── README.md
 └── assets/
-    ├── proto_full.webp
-    ├── proto_open.webp
-    ├── proto_detail.webp
-    ├── proto_cover.webp
     ├── hftm_logo.webp
     ├── cad_poster.webp
     ├── app-konzept.jpg
