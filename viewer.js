@@ -134,7 +134,7 @@
       gl.enable(gl.CULL_FACE); gl.cullFace(gl.BACK);
       ready = true;
       stage.classList.add('is-ready');
-      resize(); draw();
+      scheduleRefit(); draw();
       return meta;
     });
   }
@@ -332,6 +332,18 @@
   window.addEventListener('resize', function () { resize(); needsDraw = true; }, { passive: true });
   var ro = window.ResizeObserver ? new ResizeObserver(function () { resize(); needsDraw = true; }) : null;
   if (ro) ro.observe(canvas);
+
+  // Laedt die Seite in einem Hintergrundtab, liefert das Layout anfangs 0 und
+  // requestAnimationFrame ruht — die Nachmessung in tick() greift dann nicht.
+  // Deshalb zusaetzlich ueber Timer und Sichtbarkeitswechsel nachfassen.
+  function scheduleRefit() {
+    resize(); needsDraw = true;
+    [0, 120, 500, 1500].forEach(function (ms) {
+      window.setTimeout(function () { resize(); needsDraw = true; }, ms);
+    });
+  }
+  document.addEventListener('visibilitychange', function () { if (!document.hidden) scheduleRefit(); });
+  window.addEventListener('load', scheduleRefit);
 
   load().then(function (m) {
     var info = document.getElementById('viewerInfo');
