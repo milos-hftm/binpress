@@ -1,0 +1,28 @@
+BINPRESS WEBSITE — WICHTIGSTE KORREKTUREN
+Stand: 07.08.2026
+
+1. "Aufgebaut und getestet" entfernt.
+   Aktueller Projektstatus: Einzelteile gefertigt; vollständige Montage und Tests folgen.
+
+2. Leistungswerte sauber getrennt:
+   - 3000 N = Auslegung / max. Druckkraft des gewählten Antriebs
+   - 200 mm = Hub
+   - 40–50 % = angestrebte Volumenreduktion
+   - Zyklusdauer = praktischer Test offen
+   - <= 80 dB(A) = Anforderung, noch zu bestätigen
+
+3. Kosten:
+   - CHF 952.67 = Materialkosten Prototyp
+   - CHF 1'095.57 = inkl. 15 % Reserve
+   - CHF 1'400 = Projektbudget
+
+4. Marketing:
+   - Hero mit echtem Prototyp
+   - Nutzen/Zielgruppen vor technische Details gestellt
+   - Vorher-/Nachher-Demo eingebaut
+   - echtes CAD-Making-of-Video integriert
+   - Markttest-CTA ergänzt
+
+5. Team:
+   Nur Projektleiterin und Stv. Projektleitung konkret als Rollen ausgewiesen;
+   übrige Teammitglieder ohne unbestätigte Fachrollen.

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0c241a">
+  <title>BinPress — Mehr Platz im Sack</title>
+  <meta name="description" content="BinPress ist ein kompakter, elektrisch angetriebener Haushalts-Abfallverdichter als nachrüstbarer Aufsatz. Prototyp der HFTM Grenchen — Ziel: 40–50 % Volumenreduktion.">
+  <meta property="og:title" content="BinPress — Mehr Platz im Sack">
+  <meta property="og:description" content="Elektrisch verdichten statt von Hand nachdrücken. Entdecke Idee, Prototyp, Funktion und Markttest von BinPress.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a href="#top" class="brand" aria-label="BinPress Startseite">
+      <span class="brand__mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 7h16"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M8 13.5h8" class="press-line"/>
+        </svg>
+      </span>
+      <span class="brand__word">Bin<em>Press</em></span>
+    </a>
+
+    <nav class="nav__links" id="menu" aria-label="Hauptnavigation">
+      <a href="#nutzen">Vorteile</a>
+      <a href="#funktion">Funktion</a>
+      <a href="#prototyp">Prototyp</a>
+      <a href="#sicherheit">Sicherheit</a>
+      <a href="#daten">Daten</a>
+      <a href="#markt">Markt</a>
+    </nav>
+
+    <a class="nav__cta" href="#markttest">Markttest</a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menü öffnen" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+  <section class="hero reveal">
+    <div class="hero__grid">
+      <div class="hero__copy">
+        <p class="eyebrow">Haushalts-Abfallverdichter · Prototyp 2026</p>
+        <h1 class="hero__title">Mehr Platz<br>im Sack.</h1>
+        <p class="hero__lead">BinPress verdichtet leichte, trockene Haushaltsabfälle elektrisch direkt im Abfallbehälter. Ziel ist, das vorhandene Sackvolumen besser zu nutzen — ohne den Abfall von Hand herunterzudrücken.</p>
+        <div class="hero__cta">
+          <a href="#demo" class="btn btn--solid">Wirkung ansehen</a>
+          <a href="#prototyp" class="btn btn--ghost">Prototyp entdecken</a>
+        </div>
+        <dl class="hero__stats" aria-label="Auslegungs- und Zielwerte">
+          <div><dt>Volumenreduktion</dt><dd><span class="count" data-to="40">40</span>–50 % <small>Ziel</small></dd></div>
+          <div><dt>Presskraft</dt><dd>3000 N <small>Auslegung</small></dd></div>
+          <div><dt>Antrieb</dt><dd>24 V DC</dd></div>
+        </dl>
+      </div>
+
+      <figure class="hero-product">
+        <div class="hero-product__glow"></div>
+        <img src="assets/proto_full.webp" alt="Aktueller BinPress-Prototyp auf der Werkbank" fetchpriority="high">
+        <div class="hero-product__tag hero-product__tag--top"><span></span> Aktueller Prototyp</div>
+        <div class="hero-product__tag hero-product__tag--bottom">Endmontage &amp; Tests folgen</div>
+        <figcaption>Projektstatus 07.08.2026: Einzelteile gefertigt; vollständige Montage und praktische Tests sind die nächsten Schritte.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="trustbar" aria-label="Kernaussagen">
+    <div class="wrap trustbar__grid">
+      <div><b>Nachrüstbar gedacht</b><span>Aufsatz für bestehende Haushalts-Abfallbehälter</span></div>
+      <div><b>Elektrisch</b><span>Horizontaler Linearantrieb statt Handhebel</span></div>
+      <div><b>Alltag im Fokus</b><span>Komfort, Hygiene und bessere Platzausnutzung</span></div>
+    </div>
+  </section>
+
+  <section class="problem" id="nutzen">
+    <div class="wrap reveal">
+      <div class="problem__grid">
+        <div class="problem__head">
+          <p class="eyebrow eyebrow--light">Das Problem</p>
+          <h2 class="problem__title">Der Sack wirkt voll, obwohl zwischen den Verpackungen noch viel Luft steckt.</h2>
+        </div>
+        <div class="problem__body">
+          <p>Leichte Verpackungen, Folien, Papier und Karton beanspruchen schnell viel Volumen. Häufig wird der Sack gewechselt oder von Hand zusammengedrückt — umständlich und potenziell unhygienisch.</p>
+          <p>BinPress setzt deshalb nicht primär beim Gewicht an, sondern bei der <strong>besseren Nutzung des vorhandenen Sackvolumens</strong>.</p>
+          <div class="problem__facts">
+            <div><b>4,1 Mio.</b><span>Privathaushalte in der Schweiz</span></div>
+            <div><b>37,4 %</b><span>davon Einpersonenhaushalte (Ende 2024)</span></div>
+            <div><b>CHF 73–109</b><span>Beispiel: Sackgebühren/Jahr bei 1 × 35 L pro Woche, je nach Region</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="benefits">
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true">↘</span>
+          <h3>Volumen besser nutzen</h3>
+          <p>Angestrebt werden etwa 40–50 % Volumenreduktion. Der reale Wert wird im standardisierten Prototypentest überprüft.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true">◎</span>
+          <h3>Komfort &amp; Hygiene</h3>
+          <p>Verdichten auf Knopfdruck statt mit der Hand nachzudrücken. Der unmittelbare Nutzen steht vor einer reinen Sparargumentation.</p>
+        </article>
+        <article class="benefit-card">
+          <span class="benefit-card__icon" aria-hidden="true">↔</span>
+          <h3>Flexibel gedacht</h3>
+          <p>Ein möglichst flexibler Adapter soll die Integration in bestehende, geeignete Haushalts-Abfallbehälter ermöglichen.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo" id="demo">
+    <div class="wrap demo__grid reveal">
+      <div class="section-head">
+        <p class="eyebrow">Vorher / Nachher</p>
+        <h2 class="section-title">Die Wirkung muss man sehen.</h2>
+        <p class="section-sub">Die Marketingstrategie setzt bewusst auf visuelle Demonstrationen. Diese Animation zeigt den angestrebten Effekt schematisch — noch keinen gemessenen Versuchswert.</p>
+        <button class="btn btn--solid demo__button" id="demoToggle" type="button" aria-pressed="false">Pressvorgang simulieren</button>
+      </div>
+
+      <figure class="press-demo" id="pressDemo" aria-label="Schematischer Volumenvergleich vor und nach dem Verdichten">
+        <div class="press-demo__stage">
+          <div class="bag bag--before">
+            <span class="bag__pct">100 %</span>
+            <div class="bag__body"><div class="bag__fill bag__fill--loose"></div></div>
+            <span class="bag__label">Vor dem Pressen</span>
+          </div>
+          <div class="press-demo__arrow" aria-hidden="true">
+            <span class="press-demo__delta">Ziel<br>−40–50 %</span>
+            <svg viewBox="0 0 40 24" width="42" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h30"/><path d="M26 5l8 7-8 7"/></svg>
+          </div>
+          <div class="bag bag--after">
+            <span class="bag__pct">≈ 50–60 %</span>
+            <div class="bag__body">
+              <div class="press-plate" aria-hidden="true"></div>
+              <div class="bag__fill bag__fill--dense"></div>
+            </div>
+            <span class="bag__label">Zielzustand</span>
+          </div>
+        </div>
+        <figcaption>Schematische Darstellung. Die tatsächliche Volumenreduktion hängt vom Abfallmix ab und wird am fertigen Prototyp praktisch geprüft.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="audience">
+    <div class="wrap reveal">
+      <div class="section-head section-head--center">
+        <p class="eyebrow">Für wen?</p>
+        <h2 class="section-title">Entwickelt für Haushalte mit Sackgebühr.</h2>
+        <p class="section-sub">Im Marketingkonzept stehen drei Haushaltssegmente besonders im Fokus.</p>
+      </div>
+      <div class="audience__grid">
+        <article><span class="audience__tag">01</span><h3>Einpersonenhaushalte</h3><p>Wenig Lust auf unnötige Sackwechsel, hoher Wert auf Komfort und eine saubere Lösung.</p></article>
+        <article><span class="audience__tag">02</span><h3>Wohngemeinschaften</h3><p>Mehrere Personen, wechselnder Abfallmix und ein gemeinsamer Behälter: einfache Bedienung zählt.</p></article>
+        <article><span class="audience__tag">03</span><h3>Familien</h3><p>Höherer Sackverbrauch macht bessere Platzausnutzung und weniger häufiges Wechseln besonders interessant.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="how" id="funktion">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <p class="eyebrow">So funktioniert's</p>
+        <h2 class="section-title">Vier Schritte. Ein klarer Ablauf.</h2>
+        <p class="section-sub">Das Konzept arbeitet mit einem horizontalen, elektrischen Pressmechanismus und einem gekoppelten Auswurf.</p>
+      </div>
+      <ol class="steps">
+        <li class="step"><span class="step__no">01</span><h3>Sack einsetzen</h3><p>Oberteil öffnen beziehungsweise abschwenken, Sack in der vorgesehenen Halterung einsetzen und Gerät wieder schliessen.</p></li>
+        <li class="step"><span class="step__no">02</span><h3>Befüllen &amp; verriegeln</h3><p>Leichten, trockenen Haushaltsabfall einfüllen. Vor dem Start muss der Pressbereich geschlossen und verriegelt sein.</p></li>
+        <li class="step"><span class="step__no">03</span><h3>Elektrisch verdichten</h3><p>Der Linearantrieb bewegt die Pressplatte horizontal und verdichtet den Inhalt. Endpositionen und Überlast sollen überwacht werden.</p></li>
+        <li class="step"><span class="step__no">04</span><h3>Rückhub &amp; Auswurf</h3><p>Beim Rückhub wird der verdichtete Inhalt in Richtung Sack ausgegeben. Danach ist das System für den nächsten Zyklus bereit.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="product" id="prototyp">
+    <div class="wrap reveal">
+      <div class="section-head product__head">
+        <p class="eyebrow">Der Prototyp</p>
+        <h2 class="section-title">Von der Konstruktion in die Werkstatt.</h2>
+        <p class="section-sub">Der Prototyp ist weit fortgeschritten. Gemäss Projektstatus vom 07.08.2026 sind die Einzelteile gefertigt; vollständige Montage, Inbetriebnahme und Tests stehen noch aus.</p>
+      </div>
+
+      <div class="product-showcase">
+        <figure class="gallery-card gallery-card--large">
+          <img src="assets/proto_open.webp" alt="BinPress-Prototyp mit geöffnetem Oberteil" loading="lazy">
+          <figcaption><b>Mechanischer Aufbau</b><span>Geöffnetes Oberteil des aktuellen Prototyps</span></figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="assets/proto_detail.webp" alt="Detail des BinPress-Pressraums" loading="lazy">
+          <figcaption><b>Pressraum</b><span>Einblick in den mechanischen Bereich</span></figcaption>
+        </figure>
+        <figure class="gallery-card">
+          <img src="assets/proto_cover.webp" alt="Geschlossener Deckel des BinPress-Prototyps" loading="lazy">
+          <figcaption><b>Abdeckung</b><span>Aktueller Fertigungsstand</span></figcaption>
+        </figure>
+      </div>
+
+      <div class="video-card" id="video">
+        <div class="video-card__copy">
+          <p class="eyebrow">Making-of</p>
+          <h3>CAD-Arbeit am Sackhalter</h3>
+          <p>Das vorhandene Projektvideo zeigt einen echten Ausschnitt aus der Konstruktion in Onshape. Es eignet sich als Behind-the-Scenes-Inhalt für Website, Präsentation und Social Media.</p>
+          <p class="video-card__note">Für die spätere Kampagne ist zusätzlich ein kurzes Erklärvideo mit digitalem Zwilling sowie eine reale Vorher-Nachher-Demonstration vorgesehen.</p>
+        </div>
+        <video controls preload="metadata" poster="assets/cad_poster.webp" playsinline>
+          <source src="assets/cad-making-of.mp4" type="video/mp4">
+          Dein Browser unterstützt das Video-Element nicht.
+        </video>
+      </div>
+    </div>
+  </section>
+
+  <section class="safety" id="sicherheit">
+    <div class="wrap reveal">
+      <div class="section-head section-head--light">
+        <p class="eyebrow eyebrow--light">Sicherheit</p>
+        <h2 class="section-title">Presskraft verlangt klare Schutzfunktionen.</h2>
+        <p class="section-sub section-sub--light">Der aktuelle Sicherheitsansatz sieht mehrere unabhängige Schutzmassnahmen vor. Ihre Funktion muss am fertigen Prototyp geprüft und dokumentiert werden.</p>
+      </div>
+      <div class="safety__grid">
+        <article><span>01</span><h3>Deckel &amp; Verriegelung</h3><p>Ein Pressvorgang soll nur bei geschlossenem und verriegeltem Zugang möglich sein.</p></article>
+        <article><span>02</span><h3>Not-Halt</h3><p>Die Bewegung muss im Fehlerfall jederzeit gestoppt werden können; ein Neustart darf nicht automatisch erfolgen.</p></article>
+        <article><span>03</span><h3>Überlastschutz</h3><p>Motorstrom und maximale Fahrzeit sollen Blockaden beziehungsweise zu hohen Widerstand erkennen.</p></article>
+        <article><span>04</span><h3>Endpositionen</h3><p>Endschalter und mechanische Begrenzungen sollen unzulässige Fahrwege verhindern.</p></article>
+      </div>
+      <div class="safety__notice"><strong>Prototyp-Hinweis:</strong> Der aktuelle Aufbau ist noch kein freigegebenes Haushaltsprodukt. In der Entwicklungs- und Testphase darf er nur durch eingewiesene Personen und unter Aufsicht betrieben werden.</div>
+    </div>
+  </section>
+
+  <section class="specs" id="daten">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <p class="eyebrow">Technische Daten</p>
+        <h2 class="section-title">Was belegt ist — und was noch getestet wird.</h2>
+        <p class="section-sub">Auslegungswerte, Anforderungen und noch offene Versuchsgrössen werden bewusst getrennt dargestellt.</p>
+      </div>
+
+      <div class="specs__grid">
+        <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>24 V DC</b><small>Betriebsspannung Antrieb / Steuerung</small></div>
+        <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>3000 N</b><small>max. Druckkraft des gewählten Linearantriebs</small></div>
+        <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>200 mm</b><small>Hub</small></div>
+        <div class="spec-card"><span class="spec-card__state state--target">Ziel</span><b>40–50 %</b><small>angestrebte Volumenreduktion</small></div>
+        <div class="spec-card"><span class="spec-card__state state--test">Test offen</span><b>Zykluszeit</b><small>wird beim vollständigen Pressvorgang praktisch bestimmt</small></div>
+        <div class="spec-card"><span class="spec-card__state state--target">Anforderung</span><b>≤ 80 dB(A)</b><small>Geräuschpegel — noch praktisch zu bestätigen</small></div>
+        <div class="spec-card"><span class="spec-card__state state--target">Ziel</span><b>35 / 60 / 110 L</b><small>vorgesehene Sack-/Behältergrössen</small></div>
+        <div class="spec-card spec-card--money"><span class="spec-card__state state--fixed">Projektstand</span><b>CHF 952.67</b><small>Materialkosten Prototyp · CHF 1'095.57 inkl. 15 % Reserve · Budget CHF 1'400</small></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="market" id="markt">
+    <div class="wrap reveal">
+      <div class="section-head">
+        <p class="eyebrow">Markt &amp; Positionierung</p>
+        <h2 class="section-title">Zwischen Handpresse und Premium-Kompaktor.</h2>
+        <p class="section-sub">BinPress soll elektrisch und komfortabler als manuelle Lösungen sein — gleichzeitig kompakter, nachrüstbarer und deutlich günstiger als fest eingebaute Premium-Systeme.</p>
+      </div>
+
+      <div class="compare" role="table" aria-label="Marktvergleich">
+        <article class="compare__col compare__col--hero">
+          <span class="compare__badge">Unser Ansatz</span><h3>BinPress</h3>
+          <p class="compare__price">Vorläufiger Zielverkaufspreis<br><b>CHF 299–399</b></p>
+          <ul><li>elektrischer Antrieb</li><li>nachrüstbarer Aufsatz als Ziel</li><li>kompakt für den Haushalt</li><li>Sicherheitskonzept integriert</li></ul>
+        </article>
+        <article class="compare__col">
+          <span class="compare__badge compare__badge--muted">Manuell</span><h3>Joseph Joseph Titan</h3>
+          <p class="compare__price">recherchierter CH-Preis<br><b>ca. CHF 341</b></p>
+          <ul><li>manueller Handhebel</li><li>eigenständiges Standgerät</li><li>kein Strom nötig</li><li>Kraftaufwand von Hand</li></ul>
+        </article>
+        <article class="compare__col">
+          <span class="compare__badge compare__badge--muted">Premium</span><h3>Krushr K012</h3>
+          <p class="compare__price">recherchierter Referenzpreis<br><b>ca. USD 2'449</b></p>
+          <ul><li>elektrisch</li><li>feste Küchenintegration</li><li>hochpreisiges Segment</li><li>nicht als einfacher Aufsatz gedacht</li></ul>
+        </article>
+      </div>
+      <p class="market__note">Preisreferenzen: Recherchestand 22.07.2026. Der BinPress-Zielpreis ist keine bestätigte Serienkalkulation und setzt eine deutliche Optimierung von Konstruktion, Montage und Einkauf voraus.</p>
+    </div>
+  </section>
+
+  <section class="markttest" id="markttest">
+    <div class="wrap markttest__box reveal">
+      <div>
+        <p class="eyebrow eyebrow--light">Nächster Schritt</p>
+        <h2>Vom Prototyp zum Markttest.</h2>
+        <p>Nach Montage und Versuchen soll BinPress mit echten Zielgruppen validiert werden. Geplant sind visuelle Vorher-Nachher-Demos, QR-Codes, kurze Befragungen sowie regionale Testkontakte im Raum Grenchen, Biel und Solothurn.</p>
+      </div>
+      <div class="markttest__actions">
+        <a href="#video" class="btn btn--light">Making-of ansehen</a>
+        <a href="#team" class="btn btn--outline-light">Projektteam</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="team" id="team">
+    <div class="wrap reveal">
+      <div class="section-head section-head--center">
+        <p class="eyebrow">Team &amp; Projekt</p>
+        <h2 class="section-title">Gruppe A · Project Oriented Engineering</h2>
+        <p class="section-sub">Interdisziplinäres HFTM-Projekt in Grenchen. Die öffentlich eindeutigen Leitungsrollen sind separat ausgewiesen; weitere Fachrollen werden hier bewusst nicht überinterpretiert.</p>
+      </div>
+      <div class="team__lead">
+        <article><b>Anett Jauch</b><span>Projektleiterin</span></article>
+        <article><b>Nuredin Bajrami</b><span>Stv. Projektleitung</span></article>
+      </div>
+      <ul class="roster">
+        <li>Jean-Michel Barraz</li><li>Joel Bieri</li><li>Timo Buchser</li><li>Endrit Rrustemi</li><li>Milos Stanojevic</li><li>Robert Zaugg</li><li>Robin Käser</li><li>Severin Allemann</li>
+      </ul>
+      <p class="team__dozent">Betreuender Dozent: <b>Marc Beutler</b></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__grid">
+    <div>
+      <span class="brand brand--foot"><span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/></svg></span><span class="brand__word">Bin<em>Press</em></span></span>
+      <p class="foot__claim">Mehr Platz im Sack.</p>
+    </div>
+    <div class="foot__school">
+      <img src="assets/hftm_logo.webp" alt="HFTM — Höhere Fachschule für Technik Mittelland">
+      <p>Höhere Fachschule für Technik Mittelland<br>Sportstrasse 2 · 2540 Grenchen</p>
+    </div>
+    <div class="foot__meta">
+      <p>Studienprojekt im Fach <em>Project Oriented Engineering</em>. Ziel- und Auslegungswerte sind als solche gekennzeichnet; offene Leistungswerte werden erst durch praktische Versuche bestätigt.</p>
+      <p class="foot__copy">© 2026 Gruppe A · BinPress</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
