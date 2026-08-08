@@ -31,6 +31,7 @@
       <a href="#nutzen">Vorteile</a>
       <a href="#funktion">Funktion</a>
       <a href="#prototyp">Prototyp</a>
+      <a href="#vision">Vision</a>
       <a href="#sicherheit">Sicherheit</a>
       <a href="#daten">Daten</a>
       <a href="#markt">Markt</a>
@@ -171,13 +172,13 @@
       <div class="section-head">
         <p class="eyebrow">So funktioniert's</p>
         <h2 class="section-title">Vier Schritte. Ein klarer Ablauf.</h2>
-        <p class="section-sub">Das Konzept arbeitet mit einem horizontalen, elektrischen Pressmechanismus und einem gekoppelten Auswurf.</p>
+        <p class="section-sub">Das Konzept arbeitet mit einem horizontalen, elektrischen Pressmechanismus, geführt über Gewindespindel und Führungsstreben, mit gekoppeltem Auswurf.</p>
       </div>
       <ol class="steps">
-        <li class="step"><span class="step__no">01</span><h3>Sack einsetzen</h3><p>Oberteil öffnen beziehungsweise abschwenken, Sack in der vorgesehenen Halterung einsetzen und Gerät wieder schliessen.</p></li>
-        <li class="step"><span class="step__no">02</span><h3>Befüllen &amp; verriegeln</h3><p>Leichten, trockenen Haushaltsabfall einfüllen. Vor dem Start muss der Pressbereich geschlossen und verriegelt sein.</p></li>
-        <li class="step"><span class="step__no">03</span><h3>Elektrisch verdichten</h3><p>Der Linearantrieb bewegt die Pressplatte horizontal und verdichtet den Inhalt. Endpositionen und Überlast sollen überwacht werden.</p></li>
-        <li class="step"><span class="step__no">04</span><h3>Rückhub &amp; Auswurf</h3><p>Beim Rückhub wird der verdichtete Inhalt in Richtung Sack ausgegeben. Danach ist das System für den nächsten Zyklus bereit.</p></li>
+        <li class="step"><span class="step__no">01</span><h3>Sack einsetzen</h3><p>Deckel öffnen, Sack in der vorgesehenen Halterung einsetzen und Gerät wieder schliessen.</p></li>
+        <li class="step"><span class="step__no">02</span><h3>Befüllen &amp; verriegeln</h3><p>Leichten, trockenen Haushaltsabfall einfüllen, Deckel schliessen und mit dem Schieber verriegeln. Ein Sensor prüft die Verriegelung, bevor der Start freigegeben wird.</p></li>
+        <li class="step"><span class="step__no">03</span><h3>Elektrisch verdichten</h3><p>Die Gewindespindel bewegt die Pressplatte mit rund 3000 N über den 200-mm-Hub; Führungsstreben halten sie stabil. Ein Display zeigt den Zustand laufend an, Motorstrom und Endschalter werden überwacht.</p></li>
+        <li class="step"><span class="step__no">04</span><h3>Auswurf &amp; Rückfahrt</h3><p>Am Ende des Presswegs fällt der verdichtete Abfall durch einen schmalen Schlitz in den Sack. Danach fährt die Pressplatte zurück in die Ausgangsposition und ist für den nächsten Zyklus bereit.</p></li>
       </ol>
     </div>
   </section>
@@ -220,6 +221,26 @@
     </div>
   </section>
 
+  <section class="vision" id="vision">
+    <div class="wrap vision__grid reveal">
+      <figure class="vision-figure">
+        <img src="assets/app-konzept.jpg" alt="Frühes App-Konzept: Dashboard, Füllstände pro Standort, Historie, Simulator-Modus und Einstellungen" loading="lazy">
+      </figure>
+      <div class="vision-copy">
+        <p class="eyebrow">Ausblick · Konzept</p>
+        <h2 class="section-title">Über die einzelne Presse hinaus gedacht.</h2>
+        <p class="section-sub">Ein früher UI-Entwurf zeigt, wohin sich BinPress entwickeln könnte: eine App, die Füllstand und Verdichtung mehrerer Geräte sichtbar macht. Das ist ein Gestaltungskonzept — nicht Teil des aktuellen Marketingkonzepts, des Prototyps oder einer bestätigten Roadmap.</p>
+        <ul class="vision-features">
+          <li><b>Dashboard</b><span>Füllstände und Verdichtungen aller Stationen auf einen Blick</span></li>
+          <li><b>Live-Füllstand</b><span>Status pro Behälter, inklusive Warnung bei „bald voll“</span></li>
+          <li><b>Historie &amp; Statistik</b><span>Eingespartes Volumen und Presszyklen über Zeit</span></li>
+          <li><b>Simulator-Modus</b><span>Szenarien offline testen, ohne reale Geräte</span></li>
+        </ul>
+        <p class="vision-note">Als Diskussionsgrundlage für eine mögliche spätere Erweiterung gedacht, nicht als zugesichertes Feature.</p>
+      </div>
+    </div>
+  </section>
+
   <section class="safety" id="sicherheit">
     <div class="wrap reveal">
       <div class="section-head section-head--light">
@@ -228,12 +249,40 @@
         <p class="section-sub section-sub--light">Der aktuelle Sicherheitsansatz sieht mehrere unabhängige Schutzmassnahmen vor. Ihre Funktion muss am fertigen Prototyp geprüft und dokumentiert werden.</p>
       </div>
       <div class="safety__grid">
-        <article><span>01</span><h3>Deckel &amp; Verriegelung</h3><p>Ein Pressvorgang soll nur bei geschlossenem und verriegeltem Zugang möglich sein.</p></article>
-        <article><span>02</span><h3>Not-Halt</h3><p>Die Bewegung muss im Fehlerfall jederzeit gestoppt werden können; ein Neustart darf nicht automatisch erfolgen.</p></article>
-        <article><span>03</span><h3>Überlastschutz</h3><p>Motorstrom und maximale Fahrzeit sollen Blockaden beziehungsweise zu hohen Widerstand erkennen.</p></article>
-        <article><span>04</span><h3>Endpositionen</h3><p>Endschalter und mechanische Begrenzungen sollen unzulässige Fahrwege verhindern.</p></article>
+        <article><span>01</span><h3>Deckel &amp; Verriegelung</h3><p>Ein Pressvorgang soll nur bei geschlossenem und verriegeltem Zugang möglich sein. Ein Sensor allein gilt nicht als ausreichend — zusätzlich soll der Verriegelungsschieber selbst geprüft werden.</p></article>
+        <article><span>02</span><h3>Not-Halt</h3><p>Die Bewegung muss im Fehlerfall jederzeit gestoppt werden können; ein Neustart darf nicht automatisch erfolgen, auch nicht nach einem Stromausfall.</p></article>
+        <article><span>03</span><h3>Überlastschutz</h3><p>Motorstrom und maximale Fahrzeit sollen Blockaden beziehungsweise zu hohen Widerstand erkennen und den Antrieb rechtzeitig stoppen.</p></article>
+        <article><span>04</span><h3>Endpositionen</h3><p>Endschalter und ein zusätzlicher mechanischer Anschlag sollen unzulässige Fahrwege verhindern.</p></article>
+        <article><span>05</span><h3>Status-Display</h3><p>Ein kleines Display zeigt den Betriebszustand laufend an — etwa betriebsbereit, Pressvorgang aktiv, Überlast oder Störung.</p></article>
+        <article><span>06</span><h3>Elektrische Trennung</h3><p>230-V-Bereich vollständig abgedeckt, Motor und Steuerung mit 24 V; alle berührbaren Metallteile geerdet.</p></article>
       </div>
-      <div class="safety__notice"><strong>Prototyp-Hinweis:</strong> Der aktuelle Aufbau ist noch kein freigegebenes Haushaltsprodukt. In der Entwicklungs- und Testphase darf er nur durch eingewiesene Personen und unter Aufsicht betrieben werden.</div>
+
+      <div class="safety__interlocks">
+        <div class="safety__interlocks-copy">
+          <h3>Start nur, wenn alles stimmt</h3>
+          <p>Der Pressvorgang startet erst, wenn die Steuerung fünf Bedingungen gleichzeitig prüft:</p>
+        </div>
+        <ol class="safety__conditions">
+          <li>Deckel vollständig geschlossen</li>
+          <li>Verriegelung aktiv</li>
+          <li>Not-Halt nicht betätigt</li>
+          <li>keine Störung vorhanden</li>
+          <li>Pressplatte in Ausgangsposition</li>
+        </ol>
+      </div>
+
+      <div class="safety__materials">
+        <div class="safety__materials-col safety__materials-col--ok">
+          <h4>Geeignet</h4>
+          <ul><li>Kunststoffverpackungen</li><li>Papier &amp; leichte Kartonverpackungen</li><li>Folien</li><li>leere Joghurtbecher</li></ul>
+        </div>
+        <div class="safety__materials-col safety__materials-col--no">
+          <h4>Nicht erlaubt</h4>
+          <ul><li>Glas, Dosen, Metallteile</li><li>Batterien, Spraydosen, Chemikalien</li><li>heisse Gegenstände &amp; Asche</li><li>grössere Mengen Flüssigkeit</li></ul>
+        </div>
+      </div>
+
+      <div class="safety__notice"><strong>Prototyp-Hinweis:</strong> Der aktuelle Aufbau ist noch kein freigegebenes Haushaltsprodukt. In der Entwicklungs- und Testphase darf er nur durch eingewiesene Personen und unter Aufsicht betrieben werden. Restrisiken wie Fehlbedienung oder eine absichtlich überbrückte Verriegelung werden durch Warnhinweise, Bedienungsanleitung und Einweisung reduziert, nicht vollständig ausgeschlossen.</div>
     </div>
   </section>
 
@@ -249,8 +298,9 @@
         <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>24 V DC</b><small>Betriebsspannung Antrieb / Steuerung</small></div>
         <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>3000 N</b><small>max. Druckkraft des gewählten Linearantriebs</small></div>
         <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>200 mm</b><small>Hub</small></div>
+        <div class="spec-card"><span class="spec-card__state state--fixed">Ausgelegt</span><b>11 mm/s</b><small>Vorschubgeschwindigkeit des Linearantriebs</small></div>
         <div class="spec-card"><span class="spec-card__state state--target">Ziel</span><b>40–50 %</b><small>angestrebte Volumenreduktion</small></div>
-        <div class="spec-card"><span class="spec-card__state state--test">Test offen</span><b>Zykluszeit</b><small>wird beim vollständigen Pressvorgang praktisch bestimmt</small></div>
+        <div class="spec-card"><span class="spec-card__state state--test">Test offen</span><b>ca. 30–60 s</b><small>Zykluszeit — Schätzung aus Hub &amp; Vorschub, wird am fertigen Prototyp gemessen</small></div>
         <div class="spec-card"><span class="spec-card__state state--target">Anforderung</span><b>≤ 80 dB(A)</b><small>Geräuschpegel — noch praktisch zu bestätigen</small></div>
         <div class="spec-card"><span class="spec-card__state state--target">Ziel</span><b>35 / 60 / 110 L</b><small>vorgesehene Sack-/Behältergrössen</small></div>
         <div class="spec-card spec-card--money"><span class="spec-card__state state--fixed">Projektstand</span><b>CHF 952.67</b><small>Materialkosten Prototyp · CHF 1'095.57 inkl. 15 % Reserve · Budget CHF 1'400</small></div>

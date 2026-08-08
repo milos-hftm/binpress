@@ -1,9 +1,23 @@
-# BinPress — Marketing-Website (überarbeitet 07.08.2026)
+# BinPress — Marketing-Website (überarbeitet 08.08.2026)
 
-Überarbeitete statische One-Page-Website für das HFTM-Projekt **BinPress**.
-Die Inhalte wurden mit den Unterlagen aus der bereitgestellten Projekt-ZIP abgeglichen.
+Statische One-Page-Website für das HFTM-Projekt **BinPress**.
+Die Inhalte werden laufend mit den Unterlagen aus der bereitgestellten Projekt-ZIP abgeglichen.
 
-## Was geändert wurde
+## Live
+
+**https://milos-hftm.github.io/binpress-website/**
+
+(sobald GitHub Pages im Repo aktiviert ist — Settings → Pages → main → /root)
+
+## Was am 08.08.2026 dazugekommen ist
+
+- neue Spec-Karte **Vorschubgeschwindigkeit (11 mm/s)** und Zykluszeit-Schätzung (ca. 30–60 s) aus Hub/Vorschub ergänzt, Quelle: Machbarkeitsanalyse
+- Funktionsablauf präzisiert: Gewindespindel + Führungsstreben, Status-Display, korrekter Auswurf am Ende des Vorwegs (nicht beim Rückhub)
+- Sicherheitsbereich erweitert: 6 statt 4 Massnahmen, die 5 Startbedingungen der Steuerung, erlaubte/nicht erlaubte Abfälle, Hinweis auf Restrisiken
+- neue Sektion **„Vision"**: früher App-Konzept (Dashboard, Füllstände, Historie, Simulator) als klar gekennzeichneter Ausblick — nicht Teil des aktuellen Prototyps oder Marketingkonzepts
+- Assembly-STEP-Datei und weiteres Videomaterial sind im Projektarchiv vorhanden für ein späteres Produktvideo (noch nicht erstellt)
+
+## Was vorher geändert wurde
 
 - stärkerer Marketing-Fokus statt reiner Projektdokumentation
 - echter Prototyp prominent im Hero
@@ -35,8 +49,13 @@ BinPress-Website-Marketing/
     ├── proto_cover.webp
     ├── hftm_logo.webp
     ├── cad_poster.webp
+    ├── app-konzept.jpg
     └── cad-making-of.mp4
 ```
+
+## Geplant: Produktvideo
+
+Ein KI-generiertes Produktvideo zu BinPress ist als nächster Schritt vorgesehen, ist aber noch nicht erstellt. CAD-Daten (inkl. Gesamtbaugruppe als STEP-Datei), technische Zeichnungen und reales Projektvideomaterial liegen im Projektarchiv bereit und können dafür als Grundlage dienen.
 
 ## Lokal ansehen
 
