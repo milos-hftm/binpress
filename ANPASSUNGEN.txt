@@ -61,3 +61,50 @@ Korrigiert:
 
 12. Elektrik 230 V / 24 V: vom Indikativ in die Soll-Form gesetzt; Pruefung
     durch fachkundige Person vor Inbetriebnahme ergaenzt (Sicherheitskonzept).
+
+
+ZWEITER ARCHIV-DURCHGANG
+Stand: 09.08.2026
+
+Beim ersten Durchgang wurden nur die Word-Dokumente gelesen. Die Excel-Dateien
+kamen erst im zweiten Durchgang dazu - dort lag der wichtigste Befund.
+
+13. VERKAUFSPREIS: Wirtschaftlichkeitsberechnung.xlsx (zuletzt bearbeitet
+    07.08.2026 von Jean Michel Barraz) enthaelt eine vollstaendige
+    Serienkalkulation ueber 100 Stueck:
+      Herstellkosten            CHF 831.32
+      + Werbekosten 5 %         CHF  41.57
+      + Gewinn 10 %             CHF  83.13
+      = Verkaufspreis           CHF 956.01
+    Das Protokoll vom 07.08.2026 haelt den Teamentscheid fest: "Das PT hat
+    sich fuer jenes in einer Excel-Mappe entschieden" (Preiskalkulations-Tool).
+
+    Die Website nannte bis dahin CHF 299-399 aus dem Marketingkonzept v0.3
+    (22.07.2026). Dieses Dokument schreibt selbst dazu: "durch Serienkalkulation
+    absichern". Vier weitere Dokumente nennen 500-1000 bzw. max. 1000:
+      Projektantrag, Anforderungsliste 3.1 (M), Pflichtenheft W6.3, Marktanalyse.
+    CHF 299-399 liegt unter den eigenen Herstellkosten von CHF 831.
+
+    Neu werden beide Werte ausgewiesen: die Kalkulation als Ist, das Marktziel
+    als Zielwert mit Optimierungsvorbehalt. Die Kalkulation ist im Abschnitt
+    Markt vollstaendig aufgeschluesselt.
+
+14. Ueberschrift Markt zurueck auf "Zwischen Handpresse und Premium-Kompaktor".
+    Sie war am 09.08. auf "Preisniveau einer guten Handpresse" geaendert worden,
+    weil CHF 299-399 auf dem Joseph Joseph Titan (CHF 341) lagen. Mit der
+    Kalkulation von CHF 956 liegt BinPress wieder zwischen Handpresse (341)
+    und Krushr (USD 2'449) - die urspruengliche Formulierung war korrekt.
+
+15. Bauhoehe (5.2) und Baufaeche (5.3) sind in der Anforderungsliste als
+    Wunsch "W" gefuehrt, nicht als Fest- oder Mindestforderung. Eine frueher
+    notierte Abweichung ist damit ein nicht erfuellter Wunsch, kein
+    Anforderungsverstoss.
+
+16. Nutzwertanalyse.xlsx bewertet die gewaehlte Variante mit 3.65 gegen 2.85
+    und 3.15 - sie gewinnt klar. Die in Pflichtenheft O6 und in den
+    Loesungsvarianten erwaehnte Diskrepanz "3.5 vs 3.4" stammt aus einer
+    aelteren Fassung und ist erledigt.
+
+17. Protokoll 07.08.2026: "Es wurde beschlossen, zur Optimierung unter dem
+    Motor ein Stueck weg zu flexen." Erklaert die auf den Prototypfotos
+    sichtbare Schraeglage der Motoraufnahme.

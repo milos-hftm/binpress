@@ -38,7 +38,7 @@ Die früheren Werkstattfotos des Prototyps wurden entfernt: es waren Standbilder
 - technische Daten in **Auslegung / Ziel / Anforderung / Test offen** getrennt
 - Projektstatus korrigiert: Montage und praktische Tests sind noch ausstehend
 - Materialkosten korrekt als Materialkosten bezeichnet (CHF 952.67; CHF 1'095.57 inkl. Reserve)
-- Zielpreis CHF 299–399 klar als vorläufiger Serien-Zielwert gekennzeichnet
+- Verkaufspreis: kalkulierte CHF 956 (Wirtschaftlichkeitsberechnung vom 07.08.2026, 100 Stück) und das Marktziel CHF 299–399 aus dem Marketingkonzept werden nebeneinander ausgewiesen, inklusive vollständiger Kostenaufschlüsselung
 - Teamrollen nur dort konkret benannt, wo sie in den aktuellen Unterlagen eindeutig sind
 - mobile Navigation und Responsive Layout überarbeitet
 - Pressplatten-Animation technisch korrigiert

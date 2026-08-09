@@ -351,7 +351,24 @@ button,input,select{font:inherit}
 .compare li{position:relative;padding-left:18px;font-size:.9rem;color:var(--text-muted)}
 .compare li::before{content:"—";position:absolute;left:0;top:0;color:var(--text-muted)}
 .compare__col--hero li{color:var(--on-graphite-muted)}.compare__col--hero li::before{color:var(--accent-on-dark)}
-.market__note{font-family:var(--f-mono);font-size:.65rem;color:var(--text-muted);text-align:center;margin:22px auto 0;max-width:900px}
+.market__note{font-family:var(--f-mono);font-size:.65rem;color:var(--text-muted);text-align:center;margin:22px auto 0;max-width:900px;line-height:1.7}
+.compare__sub{display:block;margin-top:8px;font-family:var(--f-mono);font-size:.62rem;font-weight:400;letter-spacing:.02em;opacity:.72}
+
+/* --- Serienkalkulation --- */
+.calc{margin-top:30px;border:1px solid var(--line);border-radius:var(--radius);background:var(--graphite);color:var(--on-graphite);overflow:hidden}
+.calc__head{padding:24px 26px 18px;border-bottom:1px solid rgba(255,255,255,.12)}
+.calc__head h3{font-family:var(--f-display);font-weight:700;font-size:1.24rem;letter-spacing:-.022em;margin:10px 0 8px}
+.calc__head p{margin:0;font-size:.9rem;color:var(--on-graphite-muted)}
+.calc__rows{margin:0;padding:14px 26px 22px;display:grid;gap:0}
+.calc__rows div{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:9px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.calc__rows dt{font-size:.88rem;color:var(--on-graphite-muted)}
+.calc__rows dd{margin:0;font-family:var(--f-mono);font-size:.88rem;color:var(--on-graphite);white-space:nowrap}
+.calc__rows dd::before{content:"CHF ";opacity:.45;font-size:.76em}
+.calc__sum{margin-top:6px;border-top:1px solid rgba(255,255,255,.22)}
+.calc__sum dt,.calc__sum dd{font-weight:600;color:var(--on-graphite)!important}
+.calc__total{border-bottom:0!important;margin-top:6px;border-top:2px solid var(--accent-on-dark)!important}
+.calc__total dt{font-family:var(--f-display);font-weight:700;font-size:1.02rem;color:var(--on-graphite)!important}
+.calc__total dd{font-size:1.18rem;font-weight:700;color:var(--accent-on-dark)!important}
 
 /* markttest */
 .markttest{padding:80px 0;background:var(--bg)}
