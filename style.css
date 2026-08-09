@@ -239,6 +239,8 @@ button,input,select{font:inherit}
 .viewer__ctl input[type=range]{flex:1;min-width:80px;accent-color:var(--accent);cursor:pointer}
 .viewer__btn{flex:none;font-family:var(--f-mono);font-size:.62rem;letter-spacing:.07em;text-transform:uppercase;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--text-muted);cursor:pointer;transition:border-color .15s ease,color .15s ease}
 .viewer__btn:hover{border-color:var(--accent);color:var(--accent)}
+.viewer__btn--go{border-color:var(--accent);color:var(--accent)}
+.viewer__btn--go[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .viewer__hint{position:absolute;top:12px;left:16px;margin:0;font-family:var(--f-mono);font-size:.62rem;color:var(--text-muted);opacity:.75;pointer-events:none}
 .viewer__info{position:absolute;top:12px;right:16px;margin:0;font-family:var(--f-mono);font-size:.62rem;color:var(--text-muted);opacity:.75;pointer-events:none;text-align:right}
 

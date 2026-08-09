@@ -90,10 +90,22 @@
   var SELECTED = [0.18, 0.90, 0.55];
   var DIMMED   = [0.21, 0.23, 0.25];
 
+  /* ---------- Pressbewegung ----------
+     Aus der Baugruppe abgeleitet, nicht aus einer dokumentierten Kinematik:
+     Pos. 20 "Presseinsatz Antrieb", 21 "Presseinsatz Bewegend" und 19
+     "Schneidplatte" bilden einen zusammenhaengenden Block bei Y -117.5..-41.5.
+     Der Linearantrieb (Pos. 15) endet bei Y -66 direkt dahinter, die feste
+     Gegenflaeche Pos. 22 "Presseinsatz" liegt bei Y -327.5..-297.5.
+     Freier Spalt 180 mm, dokumentierter Hub 200 mm - die letzten 20 mm fahren
+     die 2 mm duennen Schneidplatten in den festen Presseinsatz. */
+  var MOVING = { 19: 1, 20: 1, 21: 1 };
+  var STROKE_MM = 200;
+
   /* ---------- Zustand ---------- */
   var meta = null, parts = [], ready = false;
   var yaw = -0.72, pitch = 0.42, dist = 1250, baseDist = 1250, userZoom = 0, target = [0, 0, 0];
   var explode = 0, selectedPos = null, filterGroup = 'all';
+  var stroke = 0, pressing = false, pressDir = 1;
   var spin = !reduce, lastT = 0, needsDraw = true;
   var pickFB = null, pickTex = null, pickRB = null, pickW = 0, pickH = 0;
 
@@ -212,6 +224,13 @@
 
   function visible(p) { return filterGroup === 'all' || p.group === filterGroup; }
 
+  // Explosionsversatz plus Pressweg. Der Pressweg laeuft in -Y, also zur
+  // festen Gegenflaeche hin.
+  function setOffset(p, amp) {
+    var mv = MOVING[p.pos] ? stroke * STROKE_MM : 0;
+    gl.uniform3f(uOffset, p.dir[0] * amp, p.dir[1] * amp - mv, p.dir[2] * amp);
+  }
+
   /* ---------- Zeichnen ---------- */
   function draw() {
     if (!ready) return;
@@ -236,7 +255,7 @@
       var col = visible(p) ? p.color : DIMMED;
       if (hasMatch) col = isSel ? SELECTED : DIMMED;
       gl.uniform3fv(uColor, col);
-      gl.uniform3f(uOffset, p.dir[0] * amp, p.dir[1] * amp, p.dir[2] * amp);
+      setOffset(p, amp);
       gl.drawElements(gl.TRIANGLES, p.iCount, gl.UNSIGNED_SHORT, p.iOff * 2);
     }
 
@@ -249,7 +268,7 @@
       for (var j = 0; j < parts.length; j++) {
         var q = parts[j];
         if (q.posKey !== selectedPos) continue;
-        gl.uniform3f(uOffset, q.dir[0] * amp, q.dir[1] * amp, q.dir[2] * amp);
+        setOffset(q, amp);
         gl.drawElements(gl.TRIANGLES, q.iCount, gl.UNSIGNED_SHORT, q.iOff * 2);
       }
       gl.enable(gl.DEPTH_TEST);
@@ -271,7 +290,7 @@
     for (var i = 0; i < parts.length; i++) {
       var p = parts[i], id = i + 1;
       gl.uniform3f(uColor, (id & 255) / 255, ((id >> 8) & 255) / 255, ((id >> 16) & 255) / 255);
-      gl.uniform3f(uOffset, p.dir[0] * amp, p.dir[1] * amp, p.dir[2] * amp);
+      setOffset(p, amp);
       gl.drawElements(gl.TRIANGLES, p.iCount, gl.UNSIGNED_SHORT, p.iOff * 2);
     }
     var px = new Uint8Array(4);
@@ -283,13 +302,25 @@
   }
 
   /* ---------- Animationsschleife ---------- */
+  // 200 mm bei 11 mm/s sind 18.2 s je Richtung. Vierfacher Zeitraffer,
+  // damit ein Zyklus im Browser erfassbar bleibt.
+  var PRESS_SECONDS = (STROKE_MM / 11) / 4;
+
   var frame = 0;
   function tick(t) {
     // Layout kann nach dem Laden noch wachsen (Reveal-Animation, Tab-Wechsel,
     // spaet geladene Schriften). Deshalb regelmaessig nachmessen statt einmalig.
     if (ready && (frame++ % 10 === 0)) resize();
-    if (spin && ready) { var dt = lastT ? (t - lastT) / 1000 : 0; yaw += dt * 0.28; needsDraw = true; }
+    var dt = lastT ? Math.min((t - lastT) / 1000, 0.1) : 0;
     lastT = t;
+
+    if (ready && pressing) {
+      stroke += pressDir * dt / PRESS_SECONDS;
+      if (stroke >= 1) { stroke = 1; pressDir = -1; }
+      else if (stroke <= 0 && pressDir < 0) { stroke = 0; pressing = false; pressDir = 1; setPressUi(); }
+      updateInfo(); needsDraw = true;
+    }
+    if (spin && ready) { yaw += dt * 0.28; needsDraw = true; }
     if (needsDraw) draw();
     requestAnimationFrame(tick);
   }
@@ -339,14 +370,44 @@
 
   /* ---------- Bedienelemente ---------- */
   var slider = document.getElementById('viewerExplode');
+  var infoEl = document.getElementById('viewerInfo');
+  var pressBtn = document.getElementById('viewerPress');
+  var baseInfo = '';
+
+  function updateInfo() {
+    if (!infoEl) return;
+    infoEl.textContent = pressing || stroke > 0
+      ? 'Pressweg ' + Math.round(stroke * STROKE_MM) + ' / ' + STROKE_MM + ' mm · 4-facher Zeitraffer'
+      : baseInfo;
+  }
+  function setPressUi() {
+    if (pressBtn) {
+      pressBtn.textContent = pressing ? 'Stopp' : 'Pressvorgang';
+      pressBtn.setAttribute('aria-pressed', pressing ? 'true' : 'false');
+    }
+    updateInfo();
+  }
+  if (pressBtn) pressBtn.addEventListener('click', function () {
+    if (!ready) return;
+    if (pressing) { pressing = false; }
+    else {
+      pressing = true; pressDir = 1; spin = false;
+      explode = 0; if (slider) slider.value = 0;   // Explosion und Pressweg schliessen sich aus
+    }
+    setPressUi(); draw();
+  });
+
   if (slider) slider.addEventListener('input', function () {
-    explode = parseFloat(slider.value) / 100; spin = false; draw();
+    explode = parseFloat(slider.value) / 100; spin = false;
+    if (explode > 0 && (pressing || stroke > 0)) { pressing = false; pressDir = 1; stroke = 0; setPressUi(); }
+    draw();
   });
   var reset = document.getElementById('viewerReset');
   if (reset) reset.addEventListener('click', function () {
     yaw = -0.72; pitch = 0.42; explode = 0; userZoom = 0; dist = baseDist;
+    stroke = 0; pressing = false; pressDir = 1;
     if (slider) slider.value = 0;
-    emit(null); spin = !reduce; draw();
+    setPressUi(); emit(null); spin = !reduce; draw();
   });
 
   /* ---------- Kopplung an Stückliste ---------- */
@@ -375,9 +436,9 @@
   window.addEventListener('load', scheduleRefit);
 
   load().then(function (m) {
-    var info = document.getElementById('viewerInfo');
-    if (info) info.textContent = m.triangles.toLocaleString('de-CH') + ' Dreiecke · ' +
+    baseInfo = m.triangles.toLocaleString('de-CH') + ' Dreiecke · ' +
       m.size[0] + ' × ' + m.size[1] + ' × ' + m.size[2] + ' mm';
+    updateInfo();
   }).catch(function (err) {
     stage.classList.add('is-unsupported');
     if (window.console) console.warn('3D-Viewer:', err);
