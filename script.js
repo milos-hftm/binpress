@@ -33,11 +33,37 @@
   }
 
   var nav = document.querySelector('.nav');
+  var navLinks = menu ? Array.prototype.slice.call(menu.querySelectorAll('a[href^="#"]')) : [];
+  var navTargets = navLinks.map(function (link) {
+    var href = link.getAttribute('href');
+    var activationTarget = href === '#funktion' ? '#demo' : href;
+    return { link: link, section: document.querySelector(activationTarget) };
+  }).filter(function (item) { return item.section; });
+
   function updateNav() {
-    if (nav) nav.classList.toggle('nav--scrolled', window.scrollY > 8);
+    if (!nav) return;
+    nav.classList.toggle('nav--scrolled', window.scrollY > 8);
+
+    var maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    var progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
+    nav.style.setProperty('--scroll-progress', progress.toFixed(4));
+
+    var marker = window.scrollY + Math.min(window.innerHeight * 0.35, 320);
+    var active = null;
+    navTargets.forEach(function (item) {
+      var top = item.section.getBoundingClientRect().top + window.scrollY;
+      if (top <= marker) active = item.link;
+    });
+    navLinks.forEach(function (link) {
+      var on = link === active;
+      link.classList.toggle('is-active', on);
+      if (on) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
   }
   updateNav();
   window.addEventListener('scroll', updateNav, { passive: true });
+  window.addEventListener('resize', updateNav);
 
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window && !reduce) {
