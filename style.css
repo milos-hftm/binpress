@@ -95,7 +95,7 @@ button,input,select{font:inherit}
 
 /* hero */
 .hero{padding:56px 0 64px;border-bottom:1px solid var(--line)}
-.hero__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:50px;align-items:center}
+.hero__grid{display:grid;grid-template-columns:.92fr 1.08fr;gap:50px;align-items:start}
 .hero__title{font-family:var(--f-display);font-weight:800;font-size:clamp(3.2rem,7.4vw,5.6rem);line-height:.98;letter-spacing:-.042em;margin:0 0 22px}
 .hero__title span{color:var(--accent)}
 .hero__lead{font-size:1.1rem;color:var(--text-muted);max-width:42ch;margin:0 0 28px}
@@ -123,6 +123,7 @@ button,input,select{font:inherit}
 .trustbar{border-bottom:1px solid var(--line);background:var(--bg-alt)}
 .trustbar__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
 .trustbar__grid>div{padding:20px 26px;border-right:1px solid var(--line)}
+.trustbar__grid>div:first-child{padding-left:0}
 .trustbar__grid>div:last-child{border-right:0}
 .trustbar small{display:block;margin-bottom:5px;font-family:var(--f-mono);font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
 .trustbar b{display:block;font-family:var(--f-display);font-weight:700;font-size:1.05rem;margin-bottom:2px}
