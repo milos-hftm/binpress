@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0d1512">
   <script>(function(){try{var s=localStorage.getItem('bp-theme');var t=s||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
-  <title>BinPress — Technisches Datenblatt eines Haushalts-Abfallverdichters</title>
-  <meta name="description" content="BinPress ist ein kompakter, elektrisch angetriebener Haushalts-Abfallverdichter als nachrüstbarer Aufsatz. Prototyp der HFTM Grenchen — Auslegung 3000 N, Ziel 40–50 % Volumenreduktion.">
-  <meta property="og:title" content="BinPress — Technisches Datenblatt">
-  <meta property="og:description" content="Elektrisch verdichten statt von Hand nachdrücken. Konstruktion, Prototyp, Funktionsprinzip und Sicherheitskonzept von BinPress.">
+  <title>BinPress — Elektrischer Abfallverdichter für Haushalte</title>
+  <meta name="description" content="BinPress ist ein kompakter, elektrisch angetriebener Haushalts-Abfallverdichter als nachrüstbarer Aufsatz. HFTM-Prototyp mit 3000 N Auslegung und dem Ziel, das Sackvolumen besser zu nutzen.">
+  <meta property="og:title" content="BinPress — Mehr Platz im Sack">
+  <meta property="og:description" content="Elektrisch verdichten statt von Hand nachdrücken: Nutzen, Konstruktion, realer Projektstand und nächste Tests von BinPress.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,9 +30,7 @@
       <a href="#nutzen">Vorteile</a>
       <a href="#funktion">Funktion</a>
       <a href="#prototyp">Prototyp</a>
-      <a href="#vision">Vision</a>
       <a href="#sicherheit">Sicherheit</a>
-      <a href="#daten">Daten</a>
       <a href="#markt">Markt</a>
     </nav>
 
@@ -54,9 +52,10 @@
         <p class="tag">HAUSHALTS-ABFALLVERDICHTER · HFTM 2026</p>
         <h1 class="hero__title">Mehr Platz.<br><span>Im Sack.</span></h1>
         <p class="hero__lead">BinPress verdichtet leichte, trockene Haushaltsabfälle elektrisch direkt im Abfallbehälter — auf Knopfdruck, statt von Hand nachzudrücken.</p>
+        <p class="hero__status"><span>Projektstand</span><b>Mechanik montiert</b><span>Elektrik &amp; Praxistests offen</span></p>
         <div class="hero__cta">
           <a href="#demo" class="btn btn--solid">Wirkung ansehen</a>
-          <a href="#daten" class="btn btn--ghost">Datenblatt</a>
+          <a href="#prototyp" class="btn btn--ghost">Projektstand</a>
         </div>
         <p class="hero__target"><b>Ziel 40–50&nbsp;%</b> Volumenreduktion <span>— Zielwert, im Prototypentest zu bestätigen</span></p>
       </div>
@@ -79,11 +78,12 @@
     </div>
   </section>
 
-  <section class="trustbar" aria-label="Kernaussagen">
+  <section class="trustbar" aria-label="BinPress in Kürze">
     <div class="wrap trustbar__grid">
-      <div><b>Nachrüstbar</b><span>Aufsatz für bestehende Abfallbehälter</span></div>
-      <div><b>Elektrisch</b><span>Horizontaler Linearantrieb statt Handhebel</span></div>
-      <div><b>Überwacht</b><span>Deckelsensor, Endschalter, Motorstrom</span></div>
+      <div><small>Nutzen</small><b>Mehr Sackvolumen</b><span>Leichte Verpackungen kompakter sammeln</span></div>
+      <div><small>Produktidee</small><b>Elektrischer Aufsatz</b><span>Für geeignete bestehende Abfallbehälter</span></div>
+      <div><small>Stand 09.08.2026</small><b>Mechanik montiert</b><span>Realer Aluminium-Prototyp aufgebaut</span></div>
+      <div><small>Nächster Beweis</small><b>Elektrik &amp; Tests</b><span>Wirkung, Zykluszeit und Geräusch messen</span></div>
     </div>
   </section>
 
@@ -122,40 +122,31 @@
       <figure class="press-demo" id="pressDemo" aria-label="Schematischer Volumenvergleich vor und nach dem Verdichten">
         <div class="press-demo__stage">
           <div class="bag bag--before">
-            <span class="bag__pct">100 %</span>
-            <div class="bag__body"><div class="bag__fill bag__fill--loose"></div></div>
-            <span class="bag__label">Vor dem Pressen</span>
+            <div class="bag__meta"><span>Vorher</span><strong>100 %</strong></div>
+            <div class="bag__body">
+              <div class="bag__fill bag__fill--loose" aria-hidden="true">
+                <i class="waste-piece waste-piece--1"></i><i class="waste-piece waste-piece--2"></i><i class="waste-piece waste-piece--3"></i><i class="waste-piece waste-piece--4"></i><i class="waste-piece waste-piece--5"></i><i class="waste-piece waste-piece--6"></i><i class="waste-piece waste-piece--7"></i>
+              </div>
+            </div>
+            <span class="bag__label">Locker eingefüllt</span>
           </div>
-          <div class="press-demo__arrow" aria-hidden="true">
-            <span class="press-demo__delta">ZIEL<br>−40–50 %</span>
-            <svg viewBox="0 0 40 24" width="42" height="26" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h30"/><path d="M26 5l8 7-8 7"/></svg>
+          <div class="press-demo__impact" aria-hidden="true">
+            <span>Zielbereich</span>
+            <strong>−40–50%</strong>
+            <small>weniger Volumen</small>
+            <i class="press-demo__line"></i>
           </div>
           <div class="bag bag--after">
-            <span class="bag__pct">≈ 50–60 %</span>
+            <div class="bag__meta"><span>Nachher</span><strong>≈ 50–60 %</strong></div>
             <div class="bag__body">
               <div class="press-plate" aria-hidden="true"></div>
               <div class="bag__fill bag__fill--dense"></div>
             </div>
-            <span class="bag__label">Zielzustand</span>
+            <span class="bag__label">Verdichteter Zielzustand</span>
           </div>
         </div>
         <figcaption>Schematische Darstellung. Die tatsächliche Volumenreduktion hängt vom Abfallmix ab und wird am fertigen Prototyp praktisch geprüft.</figcaption>
       </figure>
-    </div>
-  </section>
-
-  <section class="audience">
-    <div class="wrap reveal">
-      <div class="section-head section-head--center">
-        <p class="tag">A.03 — ZIELGRUPPEN</p>
-        <h2 class="section-title">Entwickelt für Haushalte mit Sackgebühr.</h2>
-        <p class="section-sub">Im Marketingkonzept stehen drei Haushaltssegmente besonders im Fokus.</p>
-      </div>
-      <div class="audience__grid">
-        <article><span class="audience__tag">Einpersonenhaushalt</span><p>Wenig Lust auf unnötige Sackwechsel, hoher Wert auf Komfort und eine saubere Lösung.</p></article>
-        <article><span class="audience__tag">Wohngemeinschaft</span><p>Mehrere Personen, wechselnder Abfallmix und ein gemeinsamer Behälter: einfache Bedienung zählt.</p></article>
-        <article><span class="audience__tag">Familie</span><p>Höherer Sackverbrauch macht bessere Platzausnutzung und weniger häufiges Wechseln besonders interessant.</p></article>
-      </div>
     </div>
   </section>
 
@@ -250,7 +241,10 @@
               <li><button type="button" class="bom__row" data-pos="13" data-group="deckel"><span class="bom__no">13</span><span class="bom__name">Hinge DIN 7954 C 60</span><span class="bom__pn">90003727</span><span class="bom__qty">6×</span></button></li>
               <li><button type="button" class="bom__row" data-pos="3" data-group="sensor" data-x="28.95" data-y="36.79"><span class="bom__no">3</span><span class="bom__name">Metallsensor</span><span class="bom__pn">10013899</span><span class="bom__qty">1×</span></button></li>
             </ol>
-            <p class="explorer__foot">Positionen 12–14 und 16–18 (Scharniere, Lager) sind in der Explosionsdarstellung nicht einzeln beziffert und in der CAD-Baugruppe nicht als Volumenkörper enthalten — sie haben deshalb weder Bildmarker noch 3D-Körper. Die übrigen 20 Positionen sind im Modell einzeln anwählbar. Die Zuordnung zu Baugruppen ist eine Lesehilfe für diese Website, keine Angabe aus der Zeichnung. Der Pressvorgang bewegt die Positionen 19, 20 und 21 um den dokumentierten Hub von 200 mm auf die feste Gegenfläche (Position 22) zu. Diese Bewegung ist aus der Lage der Bauteile in der Baugruppe abgeleitet, nicht aus einer dokumentierten Kinematik — die Darstellung läuft im vierfachen Zeitraffer.</p>
+            <details class="explorer-note">
+              <summary>Hinweise zur Modellzuordnung</summary>
+              <p class="explorer__foot">Positionen 12–14 und 16–18 (Scharniere, Lager) sind in der Explosionsdarstellung nicht einzeln beziffert und in der CAD-Baugruppe nicht als Volumenkörper enthalten — sie haben deshalb weder Bildmarker noch 3D-Körper. Die übrigen 20 Positionen sind im Modell einzeln anwählbar. Die Zuordnung zu Baugruppen ist eine Lesehilfe für diese Website, keine Angabe aus der Zeichnung. Der Pressvorgang bewegt die Positionen 19, 20 und 21 um den dokumentierten Hub von 200 mm auf die feste Gegenfläche (Position 22) zu. Diese Bewegung ist aus der Lage der Bauteile in der Baugruppe abgeleitet, nicht aus einer dokumentierten Kinematik — die Darstellung läuft im vierfachen Zeitraffer.</p>
+            </details>
           </div>
         </div>
       </div>
@@ -262,20 +256,22 @@
       <div class="section-head product__head">
         <p class="tag">B.02 — PROJEKTSTAND</p>
         <h2 class="section-title">Mechanisch montiert — Elektrik und Tests folgen.</h2>
-        <p class="section-sub">Die Einzelteile sind gefertigt und zum Prototyp zusammengebaut (Stand 09.08.2026). Steuerung, Verkabelung und Inbetriebnahme stehen aus; die praktischen Versuche zu Volumenreduktion, Presskraft, Zykluszeit und Geräuschpegel sind noch nicht gefahren. Die Konstruktion ist im Aufbau-Explorer vollständig dokumentiert — das Making-of zeigt einen echten Ausschnitt aus der CAD-Arbeit am Sackhalter.</p>
+        <p class="section-sub">Die Mechanik ist zum realen Prototyp zusammengebaut (Stand 09.08.2026). Linearantrieb und Pressmechanik sind montiert; Aussenverkleidung, Elektrik, Steuerung und Inbetriebnahme sind noch nicht abgeschlossen. Praktische Versuche zu Volumenreduktion, Presskraft, Zykluszeit und Geräuschpegel folgen.</p>
       </div>
 
-      <div class="video-card" id="video">
-        <div class="video-card__copy">
-          <p class="tag tag--light">MAKING-OF</p>
-          <h3>CAD-Arbeit am Sackhalter</h3>
-          <p>Das vorhandene Projektvideo zeigt einen echten Ausschnitt aus der CAD-Konstruktion in Siemens NX — als Behind-the-Scenes-Inhalt für Website, Präsentation und Social Media.</p>
-          <p class="video-card__note">Für die spätere Kampagne ist zusätzlich ein kurzes Erklärvideo mit digitalem Zwilling sowie eine reale Vorher-Nachher-Demonstration vorgesehen.</p>
-        </div>
-        <video controls preload="metadata" poster="assets/cad_poster.webp" playsinline>
-          <source src="assets/cad-making-of.mp4" type="video/mp4">
-          Dein Browser unterstützt das Video-Element nicht.
-        </video>
+      <div class="prototype-gallery" aria-label="Aktueller Stand des BinPress-Prototyps">
+        <figure class="prototype-shot prototype-shot--lead">
+          <img src="assets/prototyp-uebersicht.jpg" alt="Aktueller BinPress-Prototyp mit offener Aluminiumkonstruktion und montiertem Linearantrieb" loading="lazy">
+          <figcaption><b>Mechanischer Aufbau</b><span>Linearantrieb und Pressmechanik sind montiert.</span></figcaption>
+        </figure>
+        <figure class="prototype-shot">
+          <img src="assets/prototyp-pressraum.jpg" alt="Blick in den Pressraum des aktuellen BinPress-Prototyps" loading="lazy">
+          <figcaption><b>Pressraum</b><span>Beweglicher Presseinsatz und Auswurföffnung.</span></figcaption>
+        </figure>
+        <figure class="prototype-shot">
+          <img src="assets/prototyp-deckel.jpg" alt="BinPress-Prototyp mit gelber Aussenhülle und teilweise montierter Abdeckung" loading="lazy">
+          <figcaption><b>Unfertiger Prototyp</b><span>Abdeckung und Elektrik werden weiter ausgebaut.</span></figcaption>
+        </figure>
       </div>
     </div>
   </section>
@@ -288,40 +284,48 @@
         <p class="section-sub">Die folgenden Darstellungen sind Gestaltungskonzepte für ein mögliches Serienprodukt — kein gebautes Gerät, keine zugesicherte Roadmap. Der aktuelle Projektstand bleibt der Prototyp weiter oben.</p>
       </div>
 
-      <div class="vision-gallery">
+      <div class="vision-gallery vision-gallery--lead">
         <figure class="vision-shot vision-shot--wide">
           <img src="assets/vision-kitchen.jpg" alt="Designvisualisierung: BinPress als Serienprodukt in einer modernen Küche" loading="lazy">
           <span class="img-flag">KI-Visualisierung</span>
           <figcaption><b>Im Alltag gedacht</b><span>Kompakter Aufsatz statt Werkstattaufbau</span></figcaption>
         </figure>
-        <figure class="vision-shot">
-          <img src="assets/vision-detail.jpg" alt="Designvisualisierung: Detail von Deckel, Verriegelungshebeln und beleuchtetem Starttaster" loading="lazy">
-          <span class="img-flag">KI-Visualisierung</span>
-          <figcaption><b>Bedienung</b><span>Ein Taster, Statusring, verriegelter Deckel</span></figcaption>
-        </figure>
-        <figure class="vision-shot">
-          <img src="assets/vision-brand.jpg" alt="Designvisualisierung: BinPress Serienprodukt in Studioumgebung" loading="lazy">
-          <span class="img-flag">KI-Visualisierung</span>
-          <figcaption><b>Formsprache</b><span>Dunkles Gehäuse, Aluminiumkante, grüner Akzent</span></figcaption>
-        </figure>
       </div>
 
-      <div class="vision__grid vision__grid--app">
-        <figure class="vision-figure">
-          <img src="assets/app-konzept.jpg" alt="Frühes App-Konzept: Dashboard, Füllstände pro Standort, Historie, Simulator-Modus und Einstellungen" loading="lazy">
-        </figure>
-        <div class="vision-copy">
-          <p class="tag">APP-KONZEPT</p>
-          <h3 class="vision-subtitle">Mehrere Geräte im Blick.</h3>
-          <p class="section-sub">Ein früher UI-Entwurf: eine App, die Füllstand und Verdichtung mehrerer Stationen sichtbar macht. Nicht Teil des aktuellen Marketingkonzepts oder des Prototyps.</p>
-          <dl class="vision-features">
-            <div><dt>Dashboard</dt><dd>Füllstände und Verdichtungen aller Stationen auf einen Blick</dd></div>
-            <div><dt>Live-Füllstand</dt><dd>Status pro Behälter, inklusive Warnung bei „bald voll"</dd></div>
-            <div><dt>Historie &amp; Statistik</dt><dd>Eingespartes Volumen und Presszyklen über Zeit</dd></div>
-            <div><dt>Simulator-Modus</dt><dd>Szenarien offline testen, ohne reale Geräte</dd></div>
-          </dl>
+      <details class="vision-more">
+        <summary>Weitere Designstudien und App-Konzept</summary>
+        <div class="vision-more__content">
+          <div class="vision-gallery vision-gallery--more">
+            <figure class="vision-shot">
+              <img src="assets/vision-detail.jpg" alt="Designvisualisierung: Detail von Deckel, Verriegelungshebeln und beleuchtetem Starttaster" loading="lazy">
+              <span class="img-flag">KI-Visualisierung</span>
+              <figcaption><b>Bedienung</b><span>Ein Taster, Statusring, verriegelter Deckel</span></figcaption>
+            </figure>
+            <figure class="vision-shot">
+              <img src="assets/vision-brand.jpg" alt="Designvisualisierung: BinPress Serienprodukt in Studioumgebung" loading="lazy">
+              <span class="img-flag">KI-Visualisierung</span>
+              <figcaption><b>Formsprache</b><span>Dunkles Gehäuse, Aluminiumkante, grüner Akzent</span></figcaption>
+            </figure>
+          </div>
+
+          <div class="vision__grid vision__grid--app">
+            <figure class="vision-figure">
+              <img src="assets/app-konzept.jpg" alt="Frühes App-Konzept: Dashboard, Füllstände pro Standort, Historie, Simulator-Modus und Einstellungen" loading="lazy">
+            </figure>
+            <div class="vision-copy">
+              <p class="tag">APP-KONZEPT</p>
+              <h3 class="vision-subtitle">Mehrere Geräte im Blick.</h3>
+              <p class="section-sub">Ein früher UI-Entwurf: eine App, die Füllstand und Verdichtung mehrerer Stationen sichtbar macht. Nicht Teil des aktuellen Marketingkonzepts oder des Prototyps.</p>
+              <dl class="vision-features">
+                <div><dt>Dashboard</dt><dd>Füllstände und Verdichtungen aller Stationen auf einen Blick</dd></div>
+                <div><dt>Live-Füllstand</dt><dd>Status pro Behälter, inklusive Warnung bei „bald voll"</dd></div>
+                <div><dt>Historie &amp; Statistik</dt><dd>Eingespartes Volumen und Presszyklen über Zeit</dd></div>
+                <div><dt>Simulator-Modus</dt><dd>Szenarien offline testen, ohne reale Geräte</dd></div>
+              </dl>
+            </div>
+          </div>
         </div>
-      </div>
+      </details>
 
       <p class="vision-note">Bildhinweis: Die Produktdarstellungen in diesem Abschnitt wurden mit KI-Bildgeneratoren auf Basis des Konstruktionsstands erstellt und sind als Designstudien gekennzeichnet. Sie zeigen kein gefertigtes Gerät.</p>
     </div>
@@ -338,36 +342,44 @@
         <article><span>ZUGANG</span><h3>Deckel &amp; Verriegelung</h3><p>Ein Pressvorgang soll nur bei geschlossenem und verriegeltem Zugang möglich sein. Ein Sensor allein gilt nicht als ausreichend.</p></article>
         <article><span>NOT-HALT</span><h3>Sofort-Stopp</h3><p>Die Bewegung muss im Fehlerfall jederzeit gestoppt werden können; ein Neustart darf nicht automatisch erfolgen.</p></article>
         <article><span>ÜBERLAST</span><h3>Kraftüberwachung</h3><p>Motorstrom und maximale Fahrzeit sollen Blockaden beziehungsweise zu hohen Widerstand erkennen.</p></article>
-        <article><span>ENDLAGE</span><h3>Wegbegrenzung</h3><p>Endschalter und ein zusätzlicher mechanischer Anschlag sollen unzulässige Fahrwege verhindern.</p></article>
-        <article><span>ANZEIGE</span><h3>Status-Display</h3><p>Zeigt den Betriebszustand laufend an — betriebsbereit, Pressvorgang aktiv, Überlast oder Störung.</p></article>
-        <article><span>ELEKTRIK</span><h3>Trennung 230 V / 24 V</h3><p>Der 230-V-Bereich soll vollständig abgedeckt und räumlich vom Pressraum getrennt sein, alle berührbaren Metallteile geerdet. Erdung, Verkabelung und Absicherung sind vor der ersten Inbetriebnahme durch eine fachkundige Person zu prüfen.</p></article>
       </div>
 
-      <div class="safety__interlocks">
-        <div class="safety__interlocks-copy">
-          <p class="tag tag--light">STARTBEDINGUNG</p>
-          <h3>Start nur, wenn alles stimmt</h3>
-          <p>Der Pressvorgang startet erst, wenn die Steuerung fünf Bedingungen gleichzeitig prüft:</p>
-        </div>
-        <ol class="safety__conditions">
-          <li>Deckel vollständig geschlossen</li>
-          <li>Verriegelung aktiv</li>
-          <li>Not-Halt nicht betätigt</li>
-          <li>keine Störung vorhanden</li>
-          <li>Pressplatte in Ausgangsposition</li>
-        </ol>
-      </div>
+      <details class="safety-more">
+        <summary>Weitere Schutzfunktionen und Nutzungsgrenzen</summary>
+        <div class="safety-more__content">
+          <div class="safety__grid safety__grid--secondary">
+            <article><span>ENDLAGE</span><h3>Wegbegrenzung</h3><p>Endschalter und ein zusätzlicher mechanischer Anschlag sollen unzulässige Fahrwege verhindern.</p></article>
+            <article><span>ANZEIGE</span><h3>Status-Display</h3><p>Zeigt den Betriebszustand laufend an — betriebsbereit, Pressvorgang aktiv, Überlast oder Störung.</p></article>
+            <article><span>ELEKTRIK</span><h3>Trennung 230 V / 24 V</h3><p>Der 230-V-Bereich soll vollständig abgedeckt und räumlich vom Pressraum getrennt sein, alle berührbaren Metallteile geerdet. Erdung, Verkabelung und Absicherung sind vor der ersten Inbetriebnahme durch eine fachkundige Person zu prüfen.</p></article>
+          </div>
 
-      <div class="safety__materials">
-        <div class="safety__materials-col safety__materials-col--ok">
-          <h4>Geeignet</h4>
-          <ul><li>Kunststoffverpackungen</li><li>Papier &amp; leichte Kartonverpackungen</li><li>Folien</li><li>leere Joghurtbecher</li></ul>
+          <div class="safety__interlocks">
+            <div class="safety__interlocks-copy">
+              <p class="tag tag--light">STARTBEDINGUNG</p>
+              <h3>Start nur, wenn alles stimmt</h3>
+              <p>Der Pressvorgang startet erst, wenn die Steuerung fünf Bedingungen gleichzeitig prüft:</p>
+            </div>
+            <ol class="safety__conditions">
+              <li>Deckel vollständig geschlossen</li>
+              <li>Verriegelung aktiv</li>
+              <li>Not-Halt nicht betätigt</li>
+              <li>keine Störung vorhanden</li>
+              <li>Pressplatte in Ausgangsposition</li>
+            </ol>
+          </div>
+
+          <div class="safety__materials">
+            <div class="safety__materials-col safety__materials-col--ok">
+              <h4>Geeignet</h4>
+              <ul><li>Kunststoffverpackungen</li><li>Papier &amp; leichte Kartonverpackungen</li><li>Folien</li><li>leere Joghurtbecher</li></ul>
+            </div>
+            <div class="safety__materials-col safety__materials-col--no">
+              <h4>Nicht erlaubt</h4>
+              <ul><li>Glas, Dosen, Metallteile</li><li>Batterien, Akkus, Spraydosen</li><li>Chemikalien &amp; brennbare Stoffe</li><li>scharfe Gegenstände</li><li>heisse Gegenstände &amp; Asche</li><li>grössere Mengen Flüssigkeit</li></ul>
+            </div>
+          </div>
         </div>
-        <div class="safety__materials-col safety__materials-col--no">
-          <h4>Nicht erlaubt</h4>
-          <ul><li>Glas, Dosen, Metallteile</li><li>Batterien, Akkus, Spraydosen</li><li>Chemikalien &amp; brennbare Stoffe</li><li>scharfe Gegenstände</li><li>heisse Gegenstände &amp; Asche</li><li>grössere Mengen Flüssigkeit</li></ul>
-        </div>
-      </div>
+      </details>
 
       <div class="safety__notice"><b>ACHTUNG — PROTOTYP-HINWEIS</b> Der aktuelle Aufbau ist noch kein freigegebenes Haushaltsprodukt. In der Entwicklungs- und Testphase darf er nur durch eingewiesene Personen und unter Aufsicht betrieben werden. Restrisiken wie Fehlbedienung oder eine absichtlich überbrückte Verriegelung werden durch Warnhinweise reduziert, nicht vollständig ausgeschlossen.</div>
     </div>
@@ -377,34 +389,39 @@
     <div class="wrap reveal">
       <div class="section-head">
         <p class="tag">C.03 — DATENBLATT</p>
-        <h2 class="section-title">Was belegt ist — und was noch getestet wird.</h2>
-        <p class="section-sub">Auslegungswerte, Anforderungen und noch offene Versuchsgrössen werden bewusst getrennt dargestellt.</p>
+        <h2 class="section-title">Technische Daten im Überblick.</h2>
+        <p class="section-sub">Die vollständige Trennung von Auslegung, Anforderungen und offenen Tests bleibt für Rückfragen verfügbar.</p>
       </div>
 
-      <table class="spec-table">
-        <thead><tr><th>Kenngrösse</th><th>Wert</th><th>Status</th></tr></thead>
-        <tbody>
-          <tr><td>Betriebsspannung Antrieb / Steuerung</td><td>24 V DC</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
-          <tr><td>max. Druckkraft Linearantrieb</td><td>3000 N</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
-          <tr><td>Hub</td><td>200 mm</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
-          <tr><td>Vorschubgeschwindigkeit (Auslegungsannahme war 20 mm/s)</td><td>11 mm/s</td><td><span class="state state--gap">Antriebsdaten</span></td></tr>
-          <tr><td>angestrebte Volumenreduktion</td><td>40–50 %</td><td><span class="state state--target">Ziel</span></td></tr>
-          <tr><td>Zykluszeit — Anforderung Pflichtenheft F1.4</td><td>≤ 30 s</td><td><span class="state state--target">Anforderung</span></td></tr>
-          <tr><td>Zykluszeit — Angabe Funktionsprinzip</td><td>ca. 30–60 s</td><td><span class="state state--test">Test offen</span></td></tr>
-          <tr><td>Geräuschpegel</td><td>≤ 80 dB(A)</td><td><span class="state state--target">Anforderung</span></td></tr>
-          <tr><td>vorgesehene Sack-/Behältergrössen</td><td>35 / 60 / 110 L</td><td><span class="state state--target">Ziel</span></td></tr>
-        </tbody>
-      </table>
+      <details class="spec-more">
+        <summary><span><b>Vollständiges Datenblatt</b><small>9 Kenngrössen, Status und Projektkosten</small></span></summary>
+        <div class="spec-more__content">
+          <table class="spec-table">
+            <thead><tr><th>Kenngrösse</th><th>Wert</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Betriebsspannung Antrieb / Steuerung</td><td>24 V DC</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
+              <tr><td>max. Druckkraft Linearantrieb</td><td>3000 N</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
+              <tr><td>Hub</td><td>200 mm</td><td><span class="state state--fixed">Ausgelegt</span></td></tr>
+              <tr><td>Vorschubgeschwindigkeit (Auslegungsannahme war 20 mm/s)</td><td>11 mm/s</td><td><span class="state state--gap">Antriebsdaten</span></td></tr>
+              <tr><td>angestrebte Volumenreduktion</td><td>40–50 %</td><td><span class="state state--target">Ziel</span></td></tr>
+              <tr><td>Zykluszeit — Anforderung Pflichtenheft F1.4</td><td>≤ 30 s</td><td><span class="state state--target">Anforderung</span></td></tr>
+              <tr><td>Zykluszeit — Angabe Funktionsprinzip</td><td>ca. 30–60 s</td><td><span class="state state--test">Test offen</span></td></tr>
+              <tr><td>Geräuschpegel</td><td>≤ 80 dB(A)</td><td><span class="state state--target">Anforderung</span></td></tr>
+              <tr><td>vorgesehene Sack-/Behältergrössen</td><td>35 / 60 / 110 L</td><td><span class="state state--target">Ziel</span></td></tr>
+            </tbody>
+          </table>
 
-      <p class="spec-note">Zur Zykluszeit: Aus 200 mm Hub und 11 mm/s Vorschub ergeben sich rechnerisch rund 18 s je Richtung, also etwa 36 s für Vor- und Rückhub. Die Anforderung F1.4 (≤ 30 s) ist mit dem gewählten Antrieb voraussichtlich nicht erreichbar. Der Antrieb wurde bewusst nach Presskraft und Hub ausgewählt — die Machbarkeitsanalyse hält fest, dass eine zuverlässige Verdichtung höher gewichtet wird als eine kurze Zykluszeit. Der tatsächliche Wert wird im Prototypentest gemessen.</p>
+          <p class="spec-note">Zur Zykluszeit: Aus 200 mm Hub und 11 mm/s Vorschub ergeben sich rechnerisch rund 18 s je Richtung, also etwa 36 s für Vor- und Rückhub. Die Anforderung F1.4 (≤ 30 s) ist mit dem gewählten Antrieb voraussichtlich nicht erreichbar. Der Antrieb wurde bewusst nach Presskraft und Hub ausgewählt — die Machbarkeitsanalyse hält fest, dass eine zuverlässige Verdichtung höher gewichtet wird als eine kurze Zykluszeit. Der tatsächliche Wert wird im Prototypentest gemessen.</p>
 
-      <div class="spec-money">
-        <div><span class="tag tag--light">PROJEKTSTAND</span><b>CHF 952.67</b><small>Materialkosten Prototyp</small></div>
-        <div class="spec-money__div"></div>
-        <div><b>CHF 1'095.57</b><small>inkl. 15 % Reserve</small></div>
-        <div class="spec-money__div"></div>
-        <div><b>CHF 1'400.–</b><small>Projektbudget</small></div>
-      </div>
+          <div class="spec-money">
+            <div><span class="tag tag--light">PROJEKTSTAND</span><b>CHF 952.67</b><small>Materialkosten Prototyp</small></div>
+            <div class="spec-money__div"></div>
+            <div><b>CHF 1'095.57</b><small>inkl. 15 % Reserve</small></div>
+            <div class="spec-money__div"></div>
+            <div><b>CHF 1'400.–</b><small>Projektbudget</small></div>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -412,49 +429,72 @@
     <div class="wrap reveal">
       <div class="section-head">
         <p class="tag">D.01 — MARKT &amp; POSITIONIERUNG</p>
-        <h2 class="section-title">Zwischen Handpresse und Premium-Kompaktor.</h2>
-        <p class="section-sub">Die Serienkalkulation vom 07.08.2026 ergibt bei 100 Stück einen Verkaufspreis von CHF 956. Damit liegt BinPress zwischen hochwertigen manuellen Lösungen und fest eingebauten Premium-Kompaktoren — elektrisch und komfortabler als die einen, kompakter, nachrüstbar und deutlich günstiger als die anderen.</p>
+        <h2 class="section-title">Der Nutzen passt. Der Preis noch nicht.</h2>
+        <p class="section-sub">Für Haushalte ist das Marktziel von CHF 299–399 deutlich plausibler. Der aktuelle Kalkulationsstand liegt noch klar darüber. Deshalb wird hier kein fertiger Verkaufspreis versprochen — vor einem Markttest müssen Konstruktion, Montage und Einkauf günstiger werden.</p>
       </div>
 
-      <div class="compare" role="table" aria-label="Marktvergleich">
-        <article class="compare__col compare__col--hero">
-          <span class="compare__badge">Unser Ansatz</span><h3>BinPress</h3>
-          <p class="compare__price">Kalkulierter Verkaufspreis<br><b>CHF 956.–</b><span class="compare__sub">Marktziel Marketingkonzept: CHF 299–399</span></p>
-          <ul><li>elektrischer Antrieb</li><li>nachrüstbarer Aufsatz als Ziel</li><li>kompakt für den Haushalt</li><li>Sicherheitskonzept integriert</li></ul>
-        </article>
-        <article class="compare__col">
-          <span class="compare__badge compare__badge--muted">Manuell</span><h3>Joseph Joseph Titan</h3>
-          <p class="compare__price">recherchierter CH-Preis<br><b>ca. CHF 341</b></p>
-          <ul><li>manueller Handhebel</li><li>eigenständiges Standgerät</li><li>kein Strom nötig</li><li>Kraftaufwand von Hand</li></ul>
-        </article>
-        <article class="compare__col">
-          <span class="compare__badge compare__badge--muted">Premium</span><h3>Krushr K012</h3>
-          <p class="compare__price">recherchierter Referenzpreis<br><b>ca. USD 2'449</b></p>
-          <ul><li>elektrisch</li><li>feste Küchenintegration</li><li>hochpreisiges Segment</li><li>nicht als einfacher Aufsatz gedacht</li></ul>
-        </article>
+      <div class="price-position" aria-label="Preisstrategie">
+        <div class="price-position__primary"><span>Marktziel</span><b>CHF 299–399</b><small>Zielwert aus dem Marketingkonzept</small></div>
+        <div><span>Aktueller Stand</span><b>Noch nicht erreicht</b><small>Serienkalkulation liegt deutlich höher</small></div>
+        <div><span>Nächster Schritt</span><b>Kosten senken</b><small>Fertigung, Montage und Einkauf optimieren</small></div>
       </div>
-      <div class="calc">
-        <div class="calc__head">
-          <p class="tag tag--light">SERIENKALKULATION · 07.08.2026 · 100 STÜCK</p>
-          <h3>Woher die CHF 956 kommen.</h3>
-          <p>Nachkalkulation mit Maschinengruppen, Rüst- und Stückzeiten sowie Materialkosten je Bauteil.</p>
+
+      <details class="market-evidence">
+        <summary>
+          <span><b>Kalkulation und Marktvergleich</b><small>Aktueller Kostenstand und externe Preisreferenzen</small></span>
+        </summary>
+        <div class="market-evidence__content">
+          <div class="compare" role="table" aria-label="Marktvergleich">
+            <article class="compare__col compare__col--hero">
+              <span class="compare__badge">Unser Ansatz</span><h3>BinPress</h3>
+              <p class="compare__price">100-Stück-Kalkulation<br><b>CHF 956.–</b><span class="compare__sub">Kostenstand, kein finaler Marktpreis</span></p>
+              <ul><li>elektrischer Antrieb</li><li>nachrüstbarer Aufsatz als Ziel</li><li>kompakt für den Haushalt</li><li>Sicherheitskonzept integriert</li></ul>
+            </article>
+            <article class="compare__col">
+              <span class="compare__badge compare__badge--muted">Manuell</span><h3>Joseph Joseph Titan</h3>
+              <p class="compare__price">recherchierter CH-Preis<br><b>ca. CHF 341</b></p>
+              <ul><li>manueller Handhebel</li><li>eigenständiges Standgerät</li><li>kein Strom nötig</li><li>Kraftaufwand von Hand</li></ul>
+            </article>
+            <article class="compare__col">
+              <span class="compare__badge compare__badge--muted">Premium</span><h3>Krushr K012</h3>
+              <p class="compare__price">recherchierter Referenzpreis<br><b>ca. USD 2'449</b></p>
+              <ul><li>elektrisch</li><li>feste Küchenintegration</li><li>hochpreisiges Segment</li><li>nicht als einfacher Aufsatz gedacht</li></ul>
+            </article>
+          </div>
+
+          <details class="calc">
+            <summary class="calc__summary">
+              <span class="calc__summary-copy">
+                <small>Serienkalkulation · 07.08.2026 · 100 Stück</small>
+                <strong>Wie sich die CHF 956 zusammensetzen</strong>
+                <span>Herstellkosten CHF 831.32 plus Werbung und Gewinn</span>
+              </span>
+              <span class="calc__summary-icon" aria-hidden="true"></span>
+            </summary>
+            <div class="calc__body">
+              <p>Nachkalkulation mit Maschinengruppen, Rüst- und Stückzeiten sowie Materialkosten je Bauteil.</p>
+              <dl class="calc__rows">
+                <div><dt>Montage (mechanisch, elektrisch, Lackierung)</dt><dd>195.00</dd></div>
+                <div><dt>Presseinsatz Bewegend, 4 ×</dt><dd>49.47</dd></div>
+                <div><dt>Schneidplatten, 3 ×</dt><dd>22.44</dd></div>
+                <div><dt>Presseinsatz</dt><dd>23.94</dd></div>
+                <div><dt>Fixerpressteil</dt><dd>61.40</dd></div>
+                <div><dt>Blechteile (Mantel, Deckel, Mittlerer Deckel)</dt><dd>84.75</dd></div>
+                <div><dt>Elektromaterial</dt><dd>394.32</dd></div>
+                <div class="calc__sum"><dt>Herstellkosten</dt><dd>831.32</dd></div>
+                <div><dt>Werbekosten 5 %</dt><dd>41.57</dd></div>
+                <div><dt>Gewinn 10 %</dt><dd>83.13</dd></div>
+                <div class="calc__total"><dt>Kalkulatorischer Verkaufspreis</dt><dd>956.01</dd></div>
+              </dl>
+            </div>
+          </details>
+
+          <details class="market-source">
+            <summary>Quellen und Preisannahmen</summary>
+            <p class="market__note">Preisreferenzen der Wettbewerber: Recherchestand 22.07.2026. Der kalkulierte Verkaufspreis stammt aus der Wirtschaftlichkeitsberechnung vom 07.08.2026 und erfüllt die Anforderung 3.1 (Verkaufspreis max. CHF 1'000). Das Marketingkonzept v0.3 nennt daneben ein Marktziel von CHF 299–399; dieser Wert liegt unter den kalkulierten Herstellkosten und setzt eine erhebliche Optimierung von Konstruktion, Montage und Einkauf voraus. Beide Werte sind bewusst nebeneinander ausgewiesen, solange das Team sie nicht zusammengeführt hat.</p>
+          </details>
         </div>
-        <dl class="calc__rows">
-          <div><dt>Montage (mechanisch, elektrisch, Lackierung)</dt><dd>195.00</dd></div>
-          <div><dt>Presseinsatz Bewegend, 4 ×</dt><dd>49.47</dd></div>
-          <div><dt>Schneidplatten, 3 ×</dt><dd>22.44</dd></div>
-          <div><dt>Presseinsatz</dt><dd>23.94</dd></div>
-          <div><dt>Fixerpressteil</dt><dd>61.40</dd></div>
-          <div><dt>Blechteile (Mantel, Deckel, Mittlerer Deckel)</dt><dd>84.75</dd></div>
-          <div><dt>Elektromaterial</dt><dd>394.32</dd></div>
-          <div class="calc__sum"><dt>Herstellkosten</dt><dd>831.32</dd></div>
-          <div><dt>Werbekosten 5 %</dt><dd>41.57</dd></div>
-          <div><dt>Gewinn 10 %</dt><dd>83.13</dd></div>
-          <div class="calc__total"><dt>Verkaufspreis</dt><dd>956.01</dd></div>
-        </dl>
-      </div>
-
-      <p class="market__note">Preisreferenzen der Wettbewerber: Recherchestand 22.07.2026. Der kalkulierte Verkaufspreis stammt aus der Wirtschaftlichkeitsberechnung vom 07.08.2026 und erfüllt die Anforderung 3.1 (Verkaufspreis max. CHF 1'000). Das Marketingkonzept v0.3 nennt daneben ein Marktziel von CHF 299–399; dieser Wert liegt unter den kalkulierten Herstellkosten und setzt eine erhebliche Optimierung von Konstruktion, Montage und Einkauf voraus. Beide Werte sind bewusst nebeneinander ausgewiesen, solange das Team sie nicht zusammengeführt hat.</p>
+      </details>
     </div>
   </section>
 
@@ -466,7 +506,7 @@
         <p>Nach Montage und Versuchen soll BinPress mit echten Zielgruppen validiert werden. Geplant sind visuelle Vorher-Nachher-Demos, QR-Codes, kurze Befragungen sowie regionale Testkontakte im Raum Grenchen, Biel und Solothurn.</p>
       </div>
       <div class="markttest__actions">
-        <a href="#video" class="btn btn--light">Making-of ansehen</a>
+        <a href="#prototyp" class="btn btn--light">Prototyp ansehen</a>
         <a href="#team" class="btn btn--outline-light">Projektteam</a>
       </div>
     </div>
@@ -474,7 +514,7 @@
 
   <section class="team" id="team">
     <div class="wrap reveal">
-      <div class="section-head section-head--center">
+      <div class="section-head">
         <p class="tag">D.02 — TEAM &amp; PROJEKT</p>
         <h2 class="section-title">Gruppe A · Project Oriented Engineering</h2>
         <p class="section-sub">Interdisziplinäres HFTM-Projekt in Grenchen. Die öffentlich eindeutigen Leitungsrollen sind separat ausgewiesen; weitere Fachrollen werden hier bewusst nicht überinterpretiert.</p>
@@ -492,23 +532,53 @@
 </main>
 
 <footer class="foot">
-  <div class="wrap foot__grid">
-    <div>
-      <span class="brand brand--foot"><span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M4 8h16M4 16h16"/><path d="M12 8v3M12 13v3"/></svg></span><span class="brand__word">Bin<em>Press</em></span></span>
-      <p class="foot__claim">Mehr Platz im Sack.</p>
+  <div class="wrap">
+    <div class="foot__top">
+      <div class="foot__intro">
+        <a href="#top" class="brand brand--foot" aria-label="BinPress Startseite">
+          <span class="brand__mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"><path d="M4 8h16M4 16h16"/><path d="M12 8v3M12 13v3"/></svg></span>
+          <span class="brand__word">Bin<em>Press</em></span>
+        </a>
+        <p class="foot__claim">Mehr Platz im Sack.</p>
+        <p class="foot__summary">Elektrischer Haushalts-Abfallverdichter als HFTM-Projekt.</p>
+      </div>
+      <a class="foot__back" href="#top">Nach oben <span aria-hidden="true">↑</span></a>
     </div>
-    <div class="foot__school">
-      <img src="assets/hftm_logo.webp" alt="HFTM — Höhere Fachschule für Technik Mittelland">
-      <p>Höhere Fachschule für Technik Mittelland<br>Sportstrasse 2 · 2540 Grenchen</p>
+
+    <div class="foot__grid">
+      <div class="foot__school">
+        <img src="assets/hftm_logo.webp" alt="HFTM — Höhere Fachschule für Technik Mittelland">
+        <div>
+          <span class="foot__label">Ausbildungspartner</span>
+          <b>Höhere Fachschule für Technik Mittelland</b>
+          <p>Sportstrasse 2 · 2540 Grenchen</p>
+        </div>
+      </div>
+
+      <nav class="foot__nav" aria-label="Footer-Navigation">
+        <span class="foot__label">Projekt</span>
+        <div class="foot__nav-links">
+          <a href="#nutzen">Vorteile</a>
+          <a href="#funktion">Funktion</a>
+          <a href="#prototyp">Prototyp</a>
+          <a href="#markt">Markt</a>
+        </div>
+      </nav>
+
+      <div class="foot__meta">
+        <span class="foot__label">Aktueller Stand</span>
+        <p><b>Mechanik montiert.</b> Elektrik, Inbetriebnahme und praktische Versuche folgen.</p>
+      </div>
     </div>
-    <div class="foot__meta">
-      <p>Studienprojekt im Fach <em>Project Oriented Engineering</em>. Ziel- und Auslegungswerte sind als solche gekennzeichnet; offene Leistungswerte werden erst durch praktische Versuche bestätigt.</p>
-      <p class="foot__copy">© 2026 GRUPPE A · BINPRESS</p>
+
+    <div class="foot__bottom">
+      <p>© 2026 Gruppe A · BinPress</p>
+      <p>HFTM Grenchen · Project Oriented Engineering</p>
     </div>
   </div>
 </footer>
 
-<script src="script.js?v=5"></script>
-<script src="viewer.js?v=5" defer></script>
+<script src="script.js?v=6"></script>
+<script src="viewer.js?v=6" defer></script>
 </body>
 </html>

@@ -194,7 +194,7 @@
     var b = meta.bbox;
     var rz = Math.max(Math.abs(b.min[2]), Math.abs(b.max[2]));
     var rxy = Math.max(Math.abs(b.min[0]), Math.abs(b.max[0]), Math.abs(b.min[1]), Math.abs(b.max[1]));
-    return Math.max(rz / HALF, rxy / (HALF * aspect)) * 1.14;
+    return Math.max(rz / HALF, rxy / (HALF * aspect)) * 1.06;
   }
 
   // Passt den Kameraabstand ans aktuelle Seitenverhaeltnis an. Laeuft auch dann,

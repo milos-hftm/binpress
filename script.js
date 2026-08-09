@@ -191,17 +191,21 @@
   var pressDemo = document.getElementById('pressDemo');
   var demoToggle = document.getElementById('demoToggle');
   if (pressDemo && demoToggle) {
-    demoToggle.addEventListener('click', function () {
-      var pressed = pressDemo.classList.toggle('is-pressed');
+    function setDemoState(pressed) {
+      pressDemo.classList.toggle('is-pressed', pressed);
       demoToggle.setAttribute('aria-pressed', pressed ? 'true' : 'false');
       demoToggle.textContent = pressed ? 'Zurücksetzen' : 'Pressvorgang simulieren';
+    }
+
+    demoToggle.addEventListener('click', function () {
+      setDemoState(!pressDemo.classList.contains('is-pressed'));
     });
 
     if ('IntersectionObserver' in window && !reduce) {
       var demoObserver = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
-            window.setTimeout(function () { pressDemo.classList.add('is-pressed'); }, 350);
+            window.setTimeout(function () { setDemoState(true); }, 500);
             demoObserver.unobserve(entry.target);
           }
         });
