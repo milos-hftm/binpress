@@ -10,7 +10,9 @@
 
   var gl = null;
   try {
-    gl = canvas.getContext('webgl', { antialias: true, alpha: true, preserveDrawingBuffer: false });
+    // preserveDrawingBuffer, damit "Bild speichern unter" auf dem Canvas
+    // ein echtes Bild liefert statt einer leeren Flaeche.
+    gl = canvas.getContext('webgl', { antialias: true, alpha: true, preserveDrawingBuffer: true });
   } catch (e) { gl = null; }
   if (!gl) { stage.classList.add('is-unsupported'); return; }
 
@@ -53,7 +55,7 @@
     ' float key  = max(dot(n, normalize(vec3(0.35, 0.45, 0.82))), 0.0);' +
     ' float fill = max(dot(n, normalize(vec3(-0.6, -0.25, 0.35))), 0.0);' +
     ' float rim  = pow(1.0 - max(n.z, 0.0), 3.0);' +
-    ' vec3 c = uColor * (0.34 + 0.62 * key + 0.20 * fill) + vec3(0.16) * rim;' +
+    ' vec3 c = uColor * (0.42 + 0.58 * key + 0.20 * fill) + vec3(0.14) * rim;' +
     ' gl_FragColor = vec4(c, 1.0); }';
 
   function compile(type, src) {
@@ -79,14 +81,14 @@
 
   /* ---------- Farben je Baugruppe ---------- */
   var GROUP_COLOR = {
-    basis:   [0.42, 0.46, 0.50],
-    press:   [0.62, 0.66, 0.70],
-    antrieb: [0.52, 0.55, 0.60],
-    deckel:  [0.36, 0.40, 0.44],
-    sensor:  [0.78, 0.62, 0.30]
+    basis:   [0.50, 0.54, 0.58],
+    press:   [0.74, 0.77, 0.80],
+    antrieb: [0.58, 0.63, 0.69],
+    deckel:  [0.41, 0.45, 0.50],
+    sensor:  [0.86, 0.66, 0.28]
   };
-  var SELECTED = [0.16, 0.85, 0.52];
-  var DIMMED   = [0.30, 0.32, 0.34];
+  var SELECTED = [0.18, 0.90, 0.55];
+  var DIMMED   = [0.21, 0.23, 0.25];
 
   /* ---------- Zustand ---------- */
   var meta = null, parts = [], ready = false;
@@ -124,7 +126,11 @@
         var c = p.ctr, l = Math.hypot(c[0], c[1], c[2]);
         var d = l > 1 ? [c[0]/l, c[1]/l, c[2]/l] : [0, 0, 1];
         return {
-          pos: p.pos, pn: p.pn, label: p.label, group: p.group,
+          pos: p.pos,
+          // Die Stueckliste liefert Positionen als Zeichenkette (data-pos),
+          // die Metadaten als Zahl. Einmal vereinheitlichen statt ueberall casten.
+          posKey: p.pos == null ? null : String(p.pos),
+          pn: p.pn, label: p.label, group: p.group,
           iOff: p.iOff, iCount: p.iCount, dir: d, index: i,
           color: GROUP_COLOR[p.group] || GROUP_COLOR.basis
         };
@@ -221,14 +227,32 @@
     gl.uniform1f(uPicking, 0);
 
     var amp = meta.radius * 0.85 * explode;
+    // Positionen 12-14 und 16-18 haben keinen Volumenkoerper. Waehlt man eine
+    // davon, wird nicht die ganze Baugruppe abgedunkelt - es gaebe nichts zu sehen.
+    var hasMatch = selectedPos != null && parts.some(function (q) { return q.posKey === selectedPos; });
     for (var i = 0; i < parts.length; i++) {
       var p = parts[i];
-      var isSel = selectedPos != null && p.pos === selectedPos;
-      var col = isSel ? SELECTED : (visible(p) ? p.color : DIMMED);
-      if (selectedPos != null && !isSel) col = DIMMED;
+      var isSel = hasMatch && p.posKey === selectedPos;
+      var col = visible(p) ? p.color : DIMMED;
+      if (hasMatch) col = isSel ? SELECTED : DIMMED;
       gl.uniform3fv(uColor, col);
       gl.uniform3f(uOffset, p.dir[0] * amp, p.dir[1] * amp, p.dir[2] * amp);
       gl.drawElements(gl.TRIANGLES, p.iCount, gl.UNSIGNED_SHORT, p.iOff * 2);
+    }
+
+    // Zweiter Durchgang ohne Tiefentest: Viele Positionen liegen im Gehaeuse
+    // (z. B. Pos. 22 Presseinsatz). Ohne diesen Durchgang waere die Markierung
+    // zwar gesetzt, aber vollstaendig verdeckt.
+    if (hasMatch) {
+      gl.disable(gl.DEPTH_TEST);
+      gl.uniform3fv(uColor, SELECTED);
+      for (var j = 0; j < parts.length; j++) {
+        var q = parts[j];
+        if (q.posKey !== selectedPos) continue;
+        gl.uniform3f(uOffset, q.dir[0] * amp, q.dir[1] * amp, q.dir[2] * amp);
+        gl.drawElements(gl.TRIANGLES, q.iCount, gl.UNSIGNED_SHORT, q.iOff * 2);
+      }
+      gl.enable(gl.DEPTH_TEST);
     }
     needsDraw = false;
   }
@@ -316,18 +340,23 @@
   /* ---------- Bedienelemente ---------- */
   var slider = document.getElementById('viewerExplode');
   if (slider) slider.addEventListener('input', function () {
-    explode = parseFloat(slider.value) / 100; spin = false; needsDraw = true;
+    explode = parseFloat(slider.value) / 100; spin = false; draw();
   });
   var reset = document.getElementById('viewerReset');
   if (reset) reset.addEventListener('click', function () {
     yaw = -0.72; pitch = 0.42; explode = 0; userZoom = 0; dist = baseDist;
     if (slider) slider.value = 0;
-    emit(null); spin = !reduce; needsDraw = true;
+    emit(null); spin = !reduce; draw();
   });
 
   /* ---------- Kopplung an Stückliste ---------- */
-  document.addEventListener('bp:select', function (e) { selectedPos = e.detail; needsDraw = true; });
-  document.addEventListener('bp:filter', function (e) { filterGroup = e.detail; needsDraw = true; });
+  // Direkt zeichnen statt nur anzufordern: requestAnimationFrame ruht in
+  // Hintergrundtabs und ist auf schwachen Geraeten gedrosselt.
+  document.addEventListener('bp:select', function (e) {
+    selectedPos = e.detail == null ? null : String(e.detail);
+    draw();
+  });
+  document.addEventListener('bp:filter', function (e) { filterGroup = e.detail; draw(); });
 
   window.addEventListener('resize', function () { resize(); needsDraw = true; }, { passive: true });
   var ro = window.ResizeObserver ? new ResizeObserver(function () { resize(); needsDraw = true; }) : null;
