@@ -39,16 +39,27 @@
   }
 
   /* ---------- Shader ---------- */
+  // uRot: x = Drehwinkel um die Y-Achse, yz = Drehpunkt (X, Z). Wird nur fuer
+  // den Deckel gesetzt, der um seine Scharnierlinie aufklappt.
   var VS =
     'attribute vec3 aPos; attribute vec3 aNrm;' +
-    'uniform mat4 uProj, uView; uniform vec3 uOffset;' +
+    'uniform mat4 uProj, uView; uniform vec3 uOffset; uniform vec3 uRot;' +
     'varying vec3 vN;' +
-    'void main(){ vN = mat3(uView) * aNrm;' +
-    ' gl_Position = uProj * uView * vec4(aPos + uOffset, 1.0); }';
+    'void main(){' +
+    ' vec3 p = aPos + uOffset; vec3 n = aNrm;' +
+    ' if (uRot.x != 0.0) {' +
+    '   float c = cos(uRot.x), s = sin(uRot.x);' +
+    '   vec2 d = vec2(p.x - uRot.y, p.z - uRot.z);' +
+    '   p.x = uRot.y + d.x * c + d.y * s;' +
+    '   p.z = uRot.z - d.x * s + d.y * c;' +
+    '   n = vec3(n.x * c + n.z * s, n.y, -n.x * s + n.z * c);' +
+    ' }' +
+    ' vN = mat3(uView) * n;' +
+    ' gl_Position = uProj * uView * vec4(p, 1.0); }';
 
   var FS =
     'precision mediump float; varying vec3 vN;' +
-    'uniform vec3 uColor; uniform float uPicking;' +
+    'uniform vec3 uColor; uniform float uPicking; uniform float uAlpha;' +
     'void main(){' +
     ' if (uPicking > 0.5) { gl_FragColor = vec4(uColor, 1.0); return; }' +
     ' vec3 n = normalize(vN); if (!gl_FrontFacing) n = -n;' +
@@ -56,7 +67,7 @@
     ' float fill = max(dot(n, normalize(vec3(-0.6, -0.25, 0.35))), 0.0);' +
     ' float rim  = pow(1.0 - max(n.z, 0.0), 3.0);' +
     ' vec3 c = uColor * (0.42 + 0.58 * key + 0.20 * fill) + vec3(0.14) * rim;' +
-    ' gl_FragColor = vec4(c, 1.0); }';
+    ' gl_FragColor = vec4(c, uAlpha); }';
 
   function compile(type, src) {
     var s = gl.createShader(type);
@@ -78,6 +89,9 @@
   var uOffset = gl.getUniformLocation(prog, 'uOffset');
   var uColor = gl.getUniformLocation(prog, 'uColor');
   var uPicking = gl.getUniformLocation(prog, 'uPicking');
+  var uRot = gl.getUniformLocation(prog, 'uRot');
+  var uAlpha = gl.getUniformLocation(prog, 'uAlpha');
+  gl.uniform1f(uAlpha, 1);
 
   /* ---------- Farben je Baugruppe ---------- */
   var GROUP_COLOR = {
@@ -101,11 +115,24 @@
   var MOVING = { 19: 1, 20: 1, 21: 1 };
   var STROKE_MM = 200;
 
+  /* ---------- Deckel ----------
+     Die Drehachse ist aus den beiden Scharnierstiften (Pos. 11, 90003745)
+     abgeleitet: beide liegen bei X 122.0..127.2 und Z 130.9..136.1 und sind
+     in Y langgestreckt - also eine Achse parallel zur Y-Achse, 2.6 mm
+     ausserhalb der +X-Kante des Deckels. Ausladung ab Achse 246.6 mm.
+     Der Deckel (Z 125.9..130.9) liegt unmittelbar ueber der Pressmechanik
+     (Z 85.9..125.9), das Aufklappen gibt sie also frei. */
+  var LID_POS = 1;
+  var LID_PIVOT_X = 124.6, LID_PIVOT_Z = 133.5;
+  var LID_ANGLE = 0.73;            // rund 42 Grad, bleibt im Bildausschnitt
+  var LID_OPEN_S = 0.6, LID_HOLD_S = 0.5, LID_CLOSE_S = 0.6;
+
   /* ---------- Zustand ---------- */
   var meta = null, parts = [], ready = false;
   var yaw = -0.72, pitch = 0.42, dist = 1250, baseDist = 1250, userZoom = 0, target = [0, 0, 0];
   var explode = 0, selectedPos = null, filterGroup = 'all';
-  var stroke = 0, pressing = false, pressDir = 1;
+  // phase: idle | opening | open | closing | pressing | returning
+  var stroke = 0, lidOpen = 0, phase = 'idle', phaseT = 0;
   var spin = !reduce, lastT = 0, needsDraw = true;
   var pickFB = null, pickTex = null, pickRB = null, pickW = 0, pickH = 0;
 
@@ -209,7 +236,9 @@
   }
 
   function camera(aspect) {
-    var d = dist * (1 + explode * 0.5);
+    // Der aufgeklappte Deckel ragt ueber die statische Bounding-Box hinaus,
+    // deshalb waehrend des Oeffnens etwas zurueckfahren.
+    var d = dist * (1 + explode * 0.5 + lidOpen * 0.18);
     var cp = Math.cos(pitch), sp = Math.sin(pitch);
     var eye = [
       target[0] + d * cp * Math.sin(yaw),
@@ -225,10 +254,15 @@
   function visible(p) { return filterGroup === 'all' || p.group === filterGroup; }
 
   // Explosionsversatz plus Pressweg. Der Pressweg laeuft in -Y, also zur
-  // festen Gegenflaeche hin.
+  // festen Gegenflaeche hin. Der Deckel bekommt zusaetzlich seine Drehung.
   function setOffset(p, amp) {
     var mv = MOVING[p.pos] ? stroke * STROKE_MM : 0;
     gl.uniform3f(uOffset, p.dir[0] * amp, p.dir[1] * amp - mv, p.dir[2] * amp);
+    if (p.pos === LID_POS && lidOpen > 0) {
+      gl.uniform3f(uRot, lidOpen * LID_ANGLE, LID_PIVOT_X, LID_PIVOT_Z);
+    } else {
+      gl.uniform3f(uRot, 0, 0, 0);
+    }
   }
 
   /* ---------- Zeichnen ---------- */
@@ -249,14 +283,40 @@
     // Positionen 12-14 und 16-18 haben keinen Volumenkoerper. Waehlt man eine
     // davon, wird nicht die ganze Baugruppe abgedunkelt - es gaebe nichts zu sehen.
     var hasMatch = selectedPos != null && parts.some(function (q) { return q.posKey === selectedPos; });
+    // Waehrend des Pressens ist der Deckel geschlossen und verriegelt - so
+    // verlangt es das Sicherheitskonzept. Damit man die Mechanik trotzdem
+    // sieht, wird er in dieser Phase als Schnittansicht durchscheinend
+    // gezeichnet, nicht geoeffnet.
+    var lidCutaway = (phase === 'pressing' || phase === 'returning') && !hasMatch;
+
     for (var i = 0; i < parts.length; i++) {
       var p = parts[i];
+      if (lidCutaway && p.pos === LID_POS) continue;   // kommt zuletzt
       var isSel = hasMatch && p.posKey === selectedPos;
       var col = visible(p) ? p.color : DIMMED;
       if (hasMatch) col = isSel ? SELECTED : DIMMED;
       gl.uniform3fv(uColor, col);
       setOffset(p, amp);
       gl.drawElements(gl.TRIANGLES, p.iCount, gl.UNSIGNED_SHORT, p.iOff * 2);
+    }
+
+    // Deckel zuletzt und durchscheinend. Er liegt ganz oben, deshalb ist
+    // keine Sortierung noetig - Tiefentest an, Tiefenschreiben aus.
+    if (lidCutaway) {
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      gl.depthMask(false);
+      gl.uniform1f(uAlpha, 0.22);
+      for (var k = 0; k < parts.length; k++) {
+        var lp = parts[k];
+        if (lp.pos !== LID_POS) continue;
+        gl.uniform3fv(uColor, visible(lp) ? lp.color : DIMMED);
+        setOffset(lp, amp);
+        gl.drawElements(gl.TRIANGLES, lp.iCount, gl.UNSIGNED_SHORT, lp.iOff * 2);
+      }
+      gl.uniform1f(uAlpha, 1);
+      gl.depthMask(true);
+      gl.disable(gl.BLEND);
     }
 
     // Zweiter Durchgang ohne Tiefentest: Viele Positionen liegen im Gehaeuse
@@ -314,10 +374,26 @@
     var dt = lastT ? Math.min((t - lastT) / 1000, 0.1) : 0;
     lastT = t;
 
-    if (ready && pressing) {
-      stroke += pressDir * dt / PRESS_SECONDS;
-      if (stroke >= 1) { stroke = 1; pressDir = -1; }
-      else if (stroke <= 0 && pressDir < 0) { stroke = 0; pressing = false; pressDir = 1; setPressUi(); }
+    // Ablauf nach Funktionsprinzip: Deckel oeffnen, befuellen, schliessen,
+    // erst dann presst die Platte. Ein Pressvorgang bei offenem Deckel waere
+    // ein Widerspruch zu den fuenf Startbedingungen der Steuerung.
+    if (ready && phase !== 'idle') {
+      phaseT += dt;
+      if (phase === 'opening') {
+        lidOpen = Math.min(1, phaseT / LID_OPEN_S);
+        if (phaseT >= LID_OPEN_S) { lidOpen = 1; phase = 'open'; phaseT = 0; }
+      } else if (phase === 'open') {
+        if (phaseT >= LID_HOLD_S) { phase = 'closing'; phaseT = 0; }
+      } else if (phase === 'closing') {
+        lidOpen = Math.max(0, 1 - phaseT / LID_CLOSE_S);
+        if (phaseT >= LID_CLOSE_S) { lidOpen = 0; phase = 'pressing'; phaseT = 0; }
+      } else if (phase === 'pressing') {
+        stroke = Math.min(1, phaseT / PRESS_SECONDS);
+        if (stroke >= 1) { stroke = 1; phase = 'returning'; phaseT = 0; }
+      } else if (phase === 'returning') {
+        stroke = Math.max(0, 1 - phaseT / PRESS_SECONDS);
+        if (stroke <= 0) { stroke = 0; phase = 'idle'; setPressUi(); }
+      }
       updateInfo(); needsDraw = true;
     }
     if (spin && ready) { yaw += dt * 0.28; needsDraw = true; }
@@ -374,38 +450,51 @@
   var pressBtn = document.getElementById('viewerPress');
   var baseInfo = '';
 
+  function running() { return phase !== 'idle'; }
+
+  function stopSequence() { phase = 'idle'; phaseT = 0; stroke = 0; lidOpen = 0; }
+
+  var PHASE_TEXT = {
+    opening:   'Deckel öffnet — Abfall einfüllen',
+    open:      'Deckel offen — Abfall einfüllen',
+    closing:   'Deckel schliesst und verriegelt',
+    pressing:  'Pressweg %s / ' + STROKE_MM + ' mm · 4× Zeitraffer · Schnittansicht',
+    returning: 'Rückfahrt %s / ' + STROKE_MM + ' mm · 4× Zeitraffer · Schnittansicht'
+  };
+
   function updateInfo() {
     if (!infoEl) return;
-    infoEl.textContent = pressing || stroke > 0
-      ? 'Pressweg ' + Math.round(stroke * STROKE_MM) + ' / ' + STROKE_MM + ' mm · 4-facher Zeitraffer'
+    var t = PHASE_TEXT[phase];
+    infoEl.textContent = t
+      ? t.replace('%s', Math.round(stroke * STROKE_MM))
       : baseInfo;
   }
   function setPressUi() {
     if (pressBtn) {
-      pressBtn.textContent = pressing ? 'Stopp' : 'Pressvorgang';
-      pressBtn.setAttribute('aria-pressed', pressing ? 'true' : 'false');
+      pressBtn.textContent = running() ? 'Stopp' : 'Pressvorgang';
+      pressBtn.setAttribute('aria-pressed', running() ? 'true' : 'false');
     }
     updateInfo();
   }
   if (pressBtn) pressBtn.addEventListener('click', function () {
     if (!ready) return;
-    if (pressing) { pressing = false; }
+    if (running()) { stopSequence(); }
     else {
-      pressing = true; pressDir = 1; spin = false;
-      explode = 0; if (slider) slider.value = 0;   // Explosion und Pressweg schliessen sich aus
+      phase = 'opening'; phaseT = 0; stroke = 0; lidOpen = 0; spin = false;
+      explode = 0; if (slider) slider.value = 0;   // Explosion und Ablauf schliessen sich aus
     }
     setPressUi(); draw();
   });
 
   if (slider) slider.addEventListener('input', function () {
     explode = parseFloat(slider.value) / 100; spin = false;
-    if (explode > 0 && (pressing || stroke > 0)) { pressing = false; pressDir = 1; stroke = 0; setPressUi(); }
+    if (explode > 0 && running()) { stopSequence(); setPressUi(); }
     draw();
   });
   var reset = document.getElementById('viewerReset');
   if (reset) reset.addEventListener('click', function () {
     yaw = -0.72; pitch = 0.42; explode = 0; userZoom = 0; dist = baseDist;
-    stroke = 0; pressing = false; pressDir = 1;
+    stopSequence();
     if (slider) slider.value = 0;
     setPressUi(); emit(null); spin = !reduce; draw();
   });
