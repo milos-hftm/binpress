@@ -44,9 +44,16 @@
   var VS =
     'attribute vec3 aPos; attribute vec3 aNrm;' +
     'uniform mat4 uProj, uView; uniform vec3 uOffset; uniform vec3 uRot;' +
+    // uStretch: x = aktiv, y = Y bis zu dem voll mitgefahren wird, z = feste
+    // Verankerung, w = Verschiebung. Dazwischen linear -> das Rohr waechst mit.
+    'uniform vec4 uStretch;' +
     'varying vec3 vN;' +
     'void main(){' +
     ' vec3 p = aPos + uOffset; vec3 n = aNrm;' +
+    ' if (uStretch.x > 0.5) {' +
+    '   float t = clamp((uStretch.z - p.y) / (uStretch.z - uStretch.y), 0.0, 1.0);' +
+    '   p.y += uStretch.w * t;' +
+    ' }' +
     ' if (uRot.x != 0.0) {' +
     '   float c = cos(uRot.x), s = sin(uRot.x);' +
     '   vec2 d = vec2(p.x - uRot.y, p.z - uRot.z);' +
@@ -91,7 +98,9 @@
   var uPicking = gl.getUniformLocation(prog, 'uPicking');
   var uRot = gl.getUniformLocation(prog, 'uRot');
   var uAlpha = gl.getUniformLocation(prog, 'uAlpha');
+  var uStretch = gl.getUniformLocation(prog, 'uStretch');
   gl.uniform1f(uAlpha, 1);
+  gl.uniform4f(uStretch, 0, 0, 1, 0);
 
   /* ---------- Farben je Baugruppe ---------- */
   var GROUP_COLOR = {
@@ -125,7 +134,17 @@
   var LID_POS = 1;
   var LID_PIVOT_X = 124.6, LID_PIVOT_Z = 133.5;
   var LID_ANGLE = 0.73;            // rund 42 Grad, bleibt im Bildausschnitt
-  var LID_OPEN_S = 0.6, LID_HOLD_S = 0.5, LID_CLOSE_S = 0.6;
+  var LID_OPEN_S = 0.6, LID_HOLD_S = 0.4, LID_CLOSE_S = 0.6;
+
+  /* ---------- Ausfahren des Linearantriebs ----------
+     In der CAD-Datei ist Pos. 15 ein einziger Koerper - Motor, Rohr und
+     Kolbenstange zusammen. Ohne Gegenmassnahme loest sich die Pressplatte
+     beim Hub sichtbar vom Antrieb (175.5 mm Luecke bei vollem Hub).
+     Profil entlang Y: bis 0 die duenne Stange mit Gabelkopf, ab 200 der
+     Motorkoerper. Alles vor Y 0 faehrt deshalb voll mit, dazwischen wird
+     linear gestreckt - das Rohr waechst mit, wie beim echten Antrieb. */
+  var DRIVE_POS = 15;
+  var DRIVE_FRONT_Y = 0, DRIVE_ANCHOR_Y = 200;
 
   /* ---------- Zustand ---------- */
   var meta = null, parts = [], ready = false;
@@ -263,6 +282,12 @@
     } else {
       gl.uniform3f(uRot, 0, 0, 0);
     }
+    // Der Antrieb faehrt vorne mit, hinten bleibt er stehen.
+    if (p.pos === DRIVE_POS && stroke > 0) {
+      gl.uniform4f(uStretch, 1, DRIVE_FRONT_Y, DRIVE_ANCHOR_Y, -stroke * STROKE_MM);
+    } else {
+      gl.uniform4f(uStretch, 0, 0, 1, 0);
+    }
   }
 
   /* ---------- Zeichnen ---------- */
@@ -283,40 +308,14 @@
     // Positionen 12-14 und 16-18 haben keinen Volumenkoerper. Waehlt man eine
     // davon, wird nicht die ganze Baugruppe abgedunkelt - es gaebe nichts zu sehen.
     var hasMatch = selectedPos != null && parts.some(function (q) { return q.posKey === selectedPos; });
-    // Waehrend des Pressens ist der Deckel geschlossen und verriegelt - so
-    // verlangt es das Sicherheitskonzept. Damit man die Mechanik trotzdem
-    // sieht, wird er in dieser Phase als Schnittansicht durchscheinend
-    // gezeichnet, nicht geoeffnet.
-    var lidCutaway = (phase === 'pressing' || phase === 'returning') && !hasMatch;
-
     for (var i = 0; i < parts.length; i++) {
       var p = parts[i];
-      if (lidCutaway && p.pos === LID_POS) continue;   // kommt zuletzt
       var isSel = hasMatch && p.posKey === selectedPos;
       var col = visible(p) ? p.color : DIMMED;
       if (hasMatch) col = isSel ? SELECTED : DIMMED;
       gl.uniform3fv(uColor, col);
       setOffset(p, amp);
       gl.drawElements(gl.TRIANGLES, p.iCount, gl.UNSIGNED_SHORT, p.iOff * 2);
-    }
-
-    // Deckel zuletzt und durchscheinend. Er liegt ganz oben, deshalb ist
-    // keine Sortierung noetig - Tiefentest an, Tiefenschreiben aus.
-    if (lidCutaway) {
-      gl.enable(gl.BLEND);
-      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
-      gl.depthMask(false);
-      gl.uniform1f(uAlpha, 0.22);
-      for (var k = 0; k < parts.length; k++) {
-        var lp = parts[k];
-        if (lp.pos !== LID_POS) continue;
-        gl.uniform3fv(uColor, visible(lp) ? lp.color : DIMMED);
-        setOffset(lp, amp);
-        gl.drawElements(gl.TRIANGLES, lp.iCount, gl.UNSIGNED_SHORT, lp.iOff * 2);
-      }
-      gl.uniform1f(uAlpha, 1);
-      gl.depthMask(true);
-      gl.disable(gl.BLEND);
     }
 
     // Zweiter Durchgang ohne Tiefentest: Viele Positionen liegen im Gehaeuse
@@ -383,16 +382,16 @@
         lidOpen = Math.min(1, phaseT / LID_OPEN_S);
         if (phaseT >= LID_OPEN_S) { lidOpen = 1; phase = 'open'; phaseT = 0; }
       } else if (phase === 'open') {
-        if (phaseT >= LID_HOLD_S) { phase = 'closing'; phaseT = 0; }
-      } else if (phase === 'closing') {
-        lidOpen = Math.max(0, 1 - phaseT / LID_CLOSE_S);
-        if (phaseT >= LID_CLOSE_S) { lidOpen = 0; phase = 'pressing'; phaseT = 0; }
+        if (phaseT >= LID_HOLD_S) { phase = 'pressing'; phaseT = 0; }
       } else if (phase === 'pressing') {
         stroke = Math.min(1, phaseT / PRESS_SECONDS);
         if (stroke >= 1) { stroke = 1; phase = 'returning'; phaseT = 0; }
       } else if (phase === 'returning') {
         stroke = Math.max(0, 1 - phaseT / PRESS_SECONDS);
-        if (stroke <= 0) { stroke = 0; phase = 'idle'; setPressUi(); }
+        if (stroke <= 0) { stroke = 0; phase = 'closing'; phaseT = 0; }
+      } else if (phase === 'closing') {
+        lidOpen = Math.max(0, 1 - phaseT / LID_CLOSE_S);
+        if (phaseT >= LID_CLOSE_S) { lidOpen = 0; phase = 'idle'; setPressUi(); }
       }
       updateInfo(); needsDraw = true;
     }
@@ -457,9 +456,9 @@
   var PHASE_TEXT = {
     opening:   'Deckel öffnet — Abfall einfüllen',
     open:      'Deckel offen — Abfall einfüllen',
-    closing:   'Deckel schliesst und verriegelt',
-    pressing:  'Pressweg %s / ' + STROKE_MM + ' mm · 4× Zeitraffer · Schnittansicht',
-    returning: 'Rückfahrt %s / ' + STROKE_MM + ' mm · 4× Zeitraffer · Schnittansicht'
+    pressing:  'Pressweg %s / ' + STROKE_MM + ' mm · 4× Zeitraffer',
+    returning: 'Rückfahrt %s / ' + STROKE_MM + ' mm · 4× Zeitraffer',
+    closing:   'Deckel schliesst'
   };
 
   function updateInfo() {
